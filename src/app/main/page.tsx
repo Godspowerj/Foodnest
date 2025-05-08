@@ -2,6 +2,7 @@
 import { Feature } from "../../../types";
 import React from "react";
 import { WiDirectionUpRight } from "react-icons/wi";
+import { MdShoppingCart } from "react-icons/md";
 
 const StartPage = () => {
   const features: Feature[] = [
@@ -68,7 +69,7 @@ const StartPage = () => {
                 key={index}
                 className="text-sm font-bold text-[#d6d5d5]  w-30 py-2 rounded-lg bg-[#292929] flex-shrink-0"
               >
-                <img src={item.image} alt="" className="w-20 h-20 mx-auto" />
+                <img src={item.image} alt="" className="w-15 h-15 mx-auto" />
                 <h2 className="">{item.title}</h2>
               </div>
             ))}
@@ -83,8 +84,25 @@ const StartPage = () => {
             <WiDirectionUpRight className="w-10 h-10" />
           </div>
           <div className="flex justify-between items-center text-[#d6d5d5] mt-4 ">
-            <button className="bg-[#292929] px-4 py-3 rounded-lg">Track current task</button>
-            <button className="bg-[#292929] px-4 py-3 rounded-lg">view history</button>
+            <button className="bg-[#292929] px-4 py-3 rounded-lg">
+              Track current task
+            </button>
+            <button className="bg-[#292929] px-4 py-3 rounded-lg">
+              view history
+            </button>
+          </div>
+        </div>
+        <div className=" text-[#d6d5d5] px-4 mt-4  pt-4">
+          <p>Active Task</p>
+          <div className="flex justify-between items-start border border-[#292929]  py-7 px-4 rounded-2xl  mt-4">
+            <div>
+              <p>In Progress</p>
+              <h2>Grocery Shopping</h2>
+            </div>
+            <div className="bg-[#292929] rounded-full p-3 flex items-center justify-center">
+               <MdShoppingCart className="w-7 h-7 " /> 
+            </div>
+            
           </div>
         </div>
       </div>
