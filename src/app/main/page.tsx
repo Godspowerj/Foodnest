@@ -82,6 +82,10 @@ const StartPage = () => {
             </button>
             <WiDirectionUpRight className="w-10 h-10" />
           </div>
+          <div className="flex justify-between items-center text-[#252525] mt-4 w-full">
+            <button className="bg-[#F9FAFB] px-4 py-3 rounded-lg">Track current task</button>
+            <button className="bg-[#F9FAFB] px-4 py-3 rounded-lg">view history</button>
+          </div>
         </div>
       </div>
     </>
