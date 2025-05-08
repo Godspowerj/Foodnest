@@ -84,7 +84,7 @@ const StartPage = () => {
           </div>
           <div className="flex justify-between items-center text-[#d6d5d5] mt-4 ">
             <button className="bg-[#292929] px-4 py-3 rounded-lg">Track current task</button>
-            <button className="bg-[#292929] px-4 py-3 rounded-lg">view history</button>
+            <button className="bg-[#292929] py-3 rounded-lg">view history</button>
           </div>
         </div>
       </div>
