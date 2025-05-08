@@ -1,6 +1,7 @@
 "use client";
 import { Feature } from "../../../types";
 import React from "react";
+import { WiDirectionUpRight } from "react-icons/wi";
 
 const StartPage = () => {
   const features: Feature[] = [
@@ -24,11 +25,11 @@ const StartPage = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-[#161616] px-4 pt-7 space-y-5">
-        <h1 className="text-3xl text-[#afafaf]">
+      <div className="min-h-screen bg-[#161616]  pt-7 space-y-5">
+        {/* <h1 className="text-3xl text-[#afafaf]">
           <span className="text-4xl">e</span>rrandgo
-        </h1>
-        <div className="text-[#d6d5d5]">
+        </h1> */}
+        <div className="text-[#d6d5d5] px-4">
           <p className="pb-2">Deliver to </p>
           <div className="flex items-center gap-4">
             <svg
@@ -56,16 +57,16 @@ const StartPage = () => {
         </div>
 
         <div className="space-y-3">
-          <div className="flex justify-between items-center text-[#d6d5d5]">
+          <div className="flex justify-between items-center text-[#d6d5d5] px-4">
             <p className="font-bold">Suggestions</p>
-            <p>All</p>
+            <p className="text-sm">All</p>
           </div>
 
-          <div className="flex text-center overflow-x-auto w-full gap-3 text-sm scrollbar-hide">
+          <div className="flex text-center overflow-x-auto w-full gap-3 pl-4 text-sm scrollbar-hide">
             {features.map((item, index) => (
               <div
                 key={index}
-                className="text-sm font-bold text-[#d6d5d5] w-30 py-2 rounded-lg bg-[#292929] flex-shrink-0"
+                className="text-sm font-bold text-[#d6d5d5]  w-30 py-2 rounded-lg bg-[#292929] flex-shrink-0"
               >
                 <img src={item.image} alt="" className="w-20 h-20 mx-auto" />
                 <h2 className="">{item.title}</h2>
@@ -73,21 +74,13 @@ const StartPage = () => {
             ))}
           </div>
         </div>
-        <div>
+        <div className="px-4">
           <h2>What do you need help with?</h2>
           <div className="flex px-3 py-4 rounded-2xl bg-black w-full justify-between items-center gap-3 mt-4">
             <button className="items-start" type="button">
               Request New Task
             </button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="30px"
-              viewBox="0 -960 960 960"
-              width="30px"
-              fill="#fffff"
-            >
-              <path d="M665.08-450H180v-60h485.08L437.23-737.85 480-780l300 300-300 300-42.77-42.15L665.08-450Z" />
-            </svg>
+            <WiDirectionUpRight className="w-10 h-10" />
           </div>
         </div>
       </div>
