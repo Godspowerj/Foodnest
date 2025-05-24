@@ -2,11 +2,14 @@ import Sidebar from "@/components/Sidebar";
 import "./globals.css";
 import { Metadata } from "next";
 import Aside from "@/components/Aside";
+import { AppProvider } from "@/components/AppContextApi/AppContext";
 
 export const metadata: Metadata = {
   title: "FoodNest",
-  description: "A collaborative platform for multiple food businesses to thrive together.",
-  keywords: "food, marketplace, multi-vendor, restaurant, foodnest, business, order",
+  description:
+    "A collaborative platform for multiple food businesses to thrive together.",
+  keywords:
+    "food, marketplace, multi-vendor, restaurant, foodnest, business, order",
   authors: [
     {
       name: "FoodNest",
@@ -34,14 +37,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased ">
-        <div className="flex items-center  justify-between h-screen  ">
-          <Sidebar />
+        <AppProvider>
+          <div className="flex items-center  justify-between h-screen  ">
+            
+            <Sidebar />
 
-          <main className="bg-[#cfcfcf] flex-1 ">{children}</main>
-          <div className="w-96 flex-shrink-0 hidden md:hidden lg:block">
-            <Aside />
+            <main className="bg-[#cfcfcf] flex-1 ">{children}</main>
+            <div className="w-96 flex-shrink-0 hidden md:hidden lg:block">
+              <Aside />
+            </div>
           </div>
-        </div>
+        </AppProvider>
       </body>
     </html>
   );

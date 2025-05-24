@@ -1,10 +1,14 @@
+'use client'
 import Category from "@/components/category";
 import Navbar from "@/components/navbar";
 import CategoryMenu from "@/components/categoryMenu";
+import { useContext } from "react";
+import { AppContext } from "@/components/AppContextApi/AppContext";
 
 const Homepage = () => {
+  const { toggleSidebar } = useContext(AppContext)!;
   return (
-    <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide  px-6 py-4">
+    <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide  px-6 py-4" onClick={toggleSidebar}>
       <div className="w-full max-w-5xl mx-auto flex flex-col ">
         <Navbar />
         <Category />

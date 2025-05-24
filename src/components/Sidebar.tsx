@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import {
   HomeIcon,
@@ -7,35 +8,42 @@ import {
   WalletIcon,
 } from "@/asset/asset";
 import Link from "next/link";
-
+import { useContext } from "react";
+import { AppContext } from "./AppContextApi/AppContext";
 
 const Sidebar: React.FC = () => {
   const sidebarItems = [
     {
       icon: <HomeIcon />,
       name: "Home",
-      path:"/"
+      path: "/",
     },
     {
       icon: <MenuIcon />,
       name: "Menu",
-      path:"/"
+      path: "/",
     },
     {
       icon: <HistoryIcon />,
       name: "History",
-      path:"/"
+      path: "/",
     },
     {
       icon: <WalletIcon />,
       name: "Wallet",
-      path:"/"
+      path: "/",
     },
   ];
+  const { isSidebarOpen } = useContext(AppContext)!;
+
   return (
     <>
-      <div className="bg-white h-screen lg:flex flex-col hidden md:hidden  justify-between items-center px-4 py-6">
-        <div className="flex flex-col items-center">
+      <div
+        className={`bg-white h-screen flex flex-col transition-transform duration-500 left-0 absolute  justify-between items-center px-4 py-6 ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full md:static md:translate-x-0" 
+        }`}
+      >
+        <div className="flex flex-col items-center max-md:hidden">
           <Image
             src="/logo.png"
             alt="Logo"
@@ -48,7 +56,11 @@ const Sidebar: React.FC = () => {
 
         <nav className="space-y-5">
           {sidebarItems.map((item, index) => (
-            <Link href={item.path} key={index} className="flex flex-col items-center">
+            <Link
+              href={item.path}
+              key={index}
+              className="flex flex-col items-center"
+            >
               <div
                 key={index}
                 className="text-center  flex flex-col items-center justify-center "

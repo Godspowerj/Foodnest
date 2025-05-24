@@ -1,13 +1,20 @@
+'use client'
 import React from "react";
 import Input from "./input";
 import Image from "next/image";
-import { hamburgerIcon as HamburgerIcon, ShoppingIcon } from "@/asset/asset";
+import { HamburgerIcon, ShoppingIcon } from "@/asset/asset";
+import { useContext } from "react";
+import { AppContext } from "./AppContextApi/AppContext";
+
 const Navbar = () => {
+  const {toggleSidebar} = useContext(AppContext)!;
+  
   return (
     <div className="">
-      <header className="lg:hidden flex items-center justify-between w-full pb-2">
-        <div className="size-7 ">
-          <HamburgerIcon />
+      <div className="lg:hidden flex items-center justify-between w-full pb-2">
+
+        <div className="size-7 cursor-pointer" onClick={toggleSidebar} >
+          <HamburgerIcon  />
         </div>
 
         <div className="flex flex-col items-center">
@@ -24,7 +31,7 @@ const Navbar = () => {
         <div className="size-7 ">
           <ShoppingIcon />
         </div>
-      </header>
+      </div>
       <div className="lg:flex  lg:items-center  w-full lg:justify-between">
         <h2 className="text-2xl font-medium hidden md:block">
           Choose category
