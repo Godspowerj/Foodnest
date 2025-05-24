@@ -39,7 +39,7 @@ const Sidebar: React.FC = () => {
   return (
     <>
       <div
-        className={`bg-white h-screen flex flex-col transition-transform duration-500 left-0 absolute  justify-between items-center px-4 py-6 ${
+        className={`bg-white fixed h-screen flex flex-col transition-transform duration-500 left-0   justify-between items-center px-4 py-6 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full md:static md:translate-x-0" 
         }`}
       >
