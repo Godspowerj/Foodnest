@@ -2,15 +2,37 @@
 
 @font-face {
   font-family: 'MyFont';
-  src: url(/fonts/circular-std-medium-500.ttf) format('truetype');
-  font-weight: bold;
+  src: url(/fonts/Montserrat-VariableFont_wght.ttf) format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'yourfont';
+  src: url(/fonts/Outfit-VariableFont_wght.ttf) format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'logofont';
+  src: url(/fonts/circular-std-medium-500.ttf) format('truetype');
+  font-weight:bold;
+  font-style: normal;
+}
 body{
   margin: 0;
   padding: 0;
-  font-family: "MyFont";
+  font-family: "yourfont";
   box-sizing: border-box;
-  color: white;
 }
+*{
+  box-sizing: border-box; 
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+
