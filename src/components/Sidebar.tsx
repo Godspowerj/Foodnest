@@ -34,6 +34,7 @@ const Sidebar: React.FC = () => {
       path: "/",
     },
   ];
+  
   const { isSidebarOpen } = useContext(AppContext)!;
 
   return (
