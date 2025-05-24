@@ -41,7 +41,7 @@ const Sidebar: React.FC = () => {
             alt="Logo"
             width={100}
             height={100}
-            className="w-10 h-10 object-contain mb-4"
+            className="w-10 h-10 object-contain mb-3"
           />
           <h1 className="text-[16px] font-bold">FoodNest</h1>
         </div>
