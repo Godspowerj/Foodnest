@@ -2,7 +2,7 @@
 import Image from "next/image";
 import {
   HomeIcon,
-  MenuIcon,
+  OrderIcon,
   HistoryIcon,
   LogoutIcon,
   WalletIcon,
@@ -19,8 +19,8 @@ const Sidebar: React.FC = () => {
       path: "/",
     },
     {
-      icon: <MenuIcon />,
-      name: "Menu",
+      icon: <OrderIcon />,
+      name: "Orders",
       path: "/",
     },
     {
@@ -44,37 +44,64 @@ const Sidebar: React.FC = () => {
           isSidebarOpen ? "translate-y-0" : "translate-y-full lg:translate-y-0"
         }`}
       >
-        <div className="hidden lg:flex flex-col items-center">
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            width={100}
-            height={100}
-            className="w-10 h-10 object-contain mb-3"
-          />
-          <h1 className="text-[16px] font-bold">FoodNest</h1>
-        </div>
+        <div className="flex items-center justify-between w-full lg:flex-col lg:items-center gap-10">
+          <div className="hidden lg:flex flex-col items-center">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="w-8 h-8 object-contain mb-2"
+            />
+            <h1 className="text-[14px] font-bold">FoodNest</h1>
+          </div>
 
-        <nav className="flex w-full justify-between lg:flex-col lg:space-y-5 lg:w-auto">
-          {sidebarItems.map((item, index) => (
-            <Link
-              href={item.path}
-              key={index}
-              className="flex flex-col items-center flex-1"
-            >
-              <div className="text-center flex flex-col items-center justify-center">
+          <nav className="flex w-full items-center justify-evenly lg:flex-col lg:space-y-5 lg:w-auto">
+            {sidebarItems.map((item, index) => (
+              <Link
+                href={item.path}
+                key={index}
+                className="flex-1 flex flex-col items-center"
+              >
                 <span>{item.icon}</span>
                 <span className="mt-1 text-[12px] lg:mt-2 lg:text-[14px]">
                   {item.name}
                 </span>
-              </div>
+              </Link>
+            ))}
+
+            {/* Profile/logout as a nav item on mobile only */}
+            <Link
+              href="/logout"
+              className="flex-1 flex flex-col items-center lg:hidden"
+            >
+              <Image
+                src="/profile.png"
+                alt="Profile"
+                width={40}
+                height={40}
+                className="w-7 h-7 rounded-full object-cover"
+              />
+              <span className="mt-1 text-[12px]">Profile</span>
             </Link>
-          ))}
-        </nav>
-        <div className="flex flex-col text-center justify-center items-center hidden lg:flex">
-          <LogoutIcon />
-          <p>Logout</p>
+          </nav>
         </div>
+
+        {/* Profile/logout at the bottom on desktop only */}
+        <Link href="/logout">
+          <div className="hidden lg:flex flex-col items-center justify-center ">
+            <Image
+              src="/profile.png"
+              alt="Profile"
+              width={40}
+              height={40}
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <span className="mt-1 text-[12px] lg:mt-2 lg:text-[14px]">
+              Profile
+            </span>
+          </div>
+        </Link>
       </div>
     </>
   );
