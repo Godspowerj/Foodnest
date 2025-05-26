@@ -9,7 +9,7 @@ const Aside: React.FC = () => {
   return (
     <>
       <div
-        className={`bg-white absolute lg:static lg:h-screen  top-0 w-full right-0 h-screen p-4 space-y-6 overflow-y-scroll scrollbar-hide rounded-t-lg inset-0 transition-transform duration-500 ${
+        className={`bg-white absolute lg:static lg:h-screen  top-0 w-full right-0 h-screen p-4 space-y-6 overflow-y-scroll scrollbar-hide rounded-t-md inset-0 transition-transform duration-500 ${
           isCartOpen ? "translate-y-full" : "translate-y-[90px] lg:translate-y-0"
         } `}
       >
