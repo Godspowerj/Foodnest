@@ -7,7 +7,7 @@ import CategoryMenu from "@/components/categoryMenu";
 const Homepage = () => {
   
   return (
-    <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide  px-4 py-4">
+    <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-4">
       <div className="w-full max-w-5xl mx-auto flex flex-col ">
         <Navbar />
         <Category />

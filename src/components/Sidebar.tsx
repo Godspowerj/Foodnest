@@ -4,7 +4,7 @@ import {
   HomeIcon,
   OrderIcon,
   HistoryIcon,
-  LogoutIcon,
+  CancelIcon,
   WalletIcon,
 } from "@/asset/asset";
 import Link from "next/link";
@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
   return (
     <>
       <div
-        className={`bg-white fixed bottom-0 left-0 w-full h-16 flex justify-between items-center px- py-2 shadow-lg z-50 lg:static lg:h-screen lg:w-20 lg:flex-col lg:justify-between lg:items-center lg:px-4 lg:py-5 transition-transform duration-500 ${
+        className={`bg-white fixed bottom-0 left-0 w-full h-16 flex justify-between items-center  py-2 shadow-lg z-50 lg:static lg:h-screen lg:w-20 lg:flex-col lg:justify-between lg:items-center lg:px-4 lg:py-5 transition-transform duration-500 ${
           isSidebarOpen ? "translate-y-0" : "translate-y-full lg:translate-y-0"
         }`}
       >

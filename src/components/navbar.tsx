@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
 
 const Navbar = () => {
-  const {toggleSidebar,isSidebarOpen} = useContext(AppContext)!;
+  const {toggleSidebar,isSidebarOpen,toggleCart } = useContext(AppContext)!;
   
   return (
     <div className="">
@@ -28,7 +28,7 @@ const Navbar = () => {
           <h1 className="text-sm font-bold">FoodNest</h1>
         </div>
 
-        <div className="size-7 ">
+        <div className="size-7 " onClick={toggleCart}>
           <ShoppingIcon />
         </div>
       </div>

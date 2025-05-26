@@ -43,7 +43,7 @@ export default function RootLayout({
             <Sidebar />
 
             <main className="bg-[#cfcfcf] flex-1 ">{children}</main>
-            <div className="w-96 flex-shrink-0 hidden md:hidden lg:block">
+            <div className="lg:w-96 flex-shrink-0">
               <Aside />
             </div>
           </div>

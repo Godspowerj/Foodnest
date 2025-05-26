@@ -1,14 +1,24 @@
+'use client'
 import React from "react";
 import { products } from "@/asset/Product";
 import Image from "next/image";
 import { CiEdit } from "react-icons/ci";
+import { CancelIcon } from "@/asset/asset";
+import { useContext } from "react";
+import { AppContext } from "./AppContextApi/AppContext";
 
 const CartItems: React.FC = () => {
+    const { toggleCart} = useContext(AppContext)!;
   return (
     <>
       <div className="space-y-3 ">
         <h2 className="font-medium text-xl text-shadow-black leading-7">
-          Bills
+          <div className="flex items-center justify-between">
+            <span>Cart</span>
+            <button className="text-gray-500 hover:text-gray-700 transition lg:hidden" onClick={toggleCart}>
+              <CancelIcon />
+            </button>
+          </div>
         </h2>
         <div className="overflow-y-auto max-h-[400px]">
           {products.map((item, index) => (
