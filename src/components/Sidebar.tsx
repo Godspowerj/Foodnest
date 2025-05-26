@@ -34,17 +34,17 @@ const Sidebar: React.FC = () => {
       path: "/",
     },
   ];
-  
+
   const { isSidebarOpen } = useContext(AppContext)!;
 
   return (
     <>
       <div
-        className={`bg-white fixed h-screen flex flex-col transition-transform duration-500 left-0   justify-between items-center px-4 py-6 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full md:static md:translate-x-0" 
+        className={`bg-white fixed bottom-0 left-0 w-full h-16 flex justify-between items-center px-4 py-2 shadow-lg z-50 lg:static lg:h-screen lg:w-20 lg:flex-col lg:justify-between lg:items-center lg:px-4 lg:py-6 transition-transform duration-500 ${
+          isSidebarOpen ? "translate-y-0" : "translate-y-full lg:translate-y-0"
         }`}
       >
-        <div className="flex flex-col items-center max-md:hidden">
+        <div className="hidden lg:flex flex-col items-center">
           <Image
             src="/logo.png"
             alt="Logo"
@@ -55,24 +55,23 @@ const Sidebar: React.FC = () => {
           <h1 className="text-[16px] font-bold">FoodNest</h1>
         </div>
 
-        <nav className="space-y-5">
+        <nav className="flex w-full justify-between lg:flex-col lg:space-y-5 lg:w-auto">
           {sidebarItems.map((item, index) => (
             <Link
               href={item.path}
               key={index}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center flex-1"
             >
-              <div
-                key={index}
-                className="text-center  flex flex-col items-center justify-center "
-              >
-                <span className="">{item.icon}</span>
-                <span className="mt-2 text-[14px]">{item.name}</span>
+              <div className="text-center flex flex-col items-center justify-center">
+                <span>{item.icon}</span>
+                <span className="mt-1 text-[12px] lg:mt-2 lg:text-[14px]">
+                  {item.name}
+                </span>
               </div>
             </Link>
           ))}
         </nav>
-        <div className="flex flex-col text-center justify-center items-center">
+        <div className="flex flex-col text-center justify-center items-center hidden lg:flex">
           <LogoutIcon />
           <p>Logout</p>
         </div>
