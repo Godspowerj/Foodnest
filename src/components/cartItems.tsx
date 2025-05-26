@@ -12,14 +12,14 @@ const CartItems: React.FC = () => {
         </h2>
         <div className="overflow-y-auto max-h-[400px]">
           {products.map((item, index) => (
-            <div key={index} className="bg-white rounded-2xl flex gap-4  ">
-              <div className="sm:flex flex-col  items-center space-y-3">
+            <div key={index} className="bg-white rounded-2xl flex gap-4 space-y-1 p-1  mb-4">
+              <div className="sm:flex flex-col  items-center ">
                 <Image
                   src={item.image}
                   alt={item.name}
-                  width={70}
-                  height={70}
-                  className="rounded-xl object-cover bg-gray-50 w-20 h-20 p-2"
+                  width={100}
+                  height={100}
+                  className="rounded-xl object-cover bg-gray-50 w-15 h-15 p-2"
                 />
               </div>
 
@@ -27,9 +27,6 @@ const CartItems: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-sm mb-1">{item.name}</h2>
-                    <p className="text-gray-500 text-sm mb-2">
-                      {item.description.slice(0, 30)}...
-                    </p>
                     <div className="flex items-center gap-2 mb-2">
                       <span className="font-bold ">x1</span>
                       <button className="text-sm bg-[#fdefed] flex items-center gap-2 px-2 py-1 rounded-lg">
