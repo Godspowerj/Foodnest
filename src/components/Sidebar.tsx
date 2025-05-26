@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
   return (
     <>
       <div
-        className={`bg-white fixed bottom-0 left-0 w-full h-16 flex justify-between items-center px-4 py-2 shadow-lg z-50 lg:static lg:h-screen lg:w-20 lg:flex-col lg:justify-between lg:items-center lg:px-4 lg:py-6 transition-transform duration-500 ${
+        className={`bg-white fixed bottom-0 left-0 w-full h-16 flex justify-between items-center px- py-2 shadow-lg z-50 lg:static lg:h-screen lg:w-20 lg:flex-col lg:justify-between lg:items-center lg:px-4 lg:py-5 transition-transform duration-500 ${
           isSidebarOpen ? "translate-y-0" : "translate-y-full lg:translate-y-0"
         }`}
       >
@@ -82,7 +82,7 @@ const Sidebar: React.FC = () => {
                 height={40}
                 className="w-7 h-7 rounded-full object-cover"
               />
-              <span className="mt-1 text-[12px]">Profile</span>
+              <span className="mt-1 text-[12px] lg:mt-2 lg:text-[14px]">Profile</span>
             </Link>
           </nav>
         </div>
