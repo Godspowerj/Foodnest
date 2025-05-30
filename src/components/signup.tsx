@@ -4,6 +4,7 @@ import InputField from "@/components/input";
 import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
 import Button from "./button";
+import { CancelIcon } from "@/asset/asset";
 
 export default function SignUp() {
   const { setAuthModal } = useContext(AppContext)!;
@@ -25,6 +26,15 @@ export default function SignUp() {
   return (
     <div className="fixed inset-0 top-0 left-0 w-full h-full flex items-center justify-center bg-black/20  z-[1000]">
       <div className="max-w-md w-full bg-white p-7 rounded-lg shadow-md">
+        <div className="flex justify-end mb-1">
+          <button
+            className="border-1 border-gray-100 cursor-pointer rounded-full p-2 text-black/60"
+            onClick={() => setAuthModal(null)}
+            aria-label="Close"
+          >
+            <CancelIcon />
+          </button>
+        </div>
         <div className="text-center ">
           <img
             src="/logo.png"

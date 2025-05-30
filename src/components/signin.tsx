@@ -8,8 +8,6 @@ import Button from "@/components/button";
 import { CancelIcon } from "@/asset/asset";
 import Image from "next/image";
 
-
-
 export default function SignIn() {
   const { setAuthModal } = useContext(AppContext)!;
   const [formData, setFormData] = useState({ text: "" });
@@ -25,10 +23,16 @@ export default function SignIn() {
 
   return (
     <div className="fixed inset-0 top-0 left-0 w-full h-full flex items-center justify-center bg-black/20  z-[1000]">
-      <div className="absolute top-4 right-4 cursor-pointer" onClick={() => setAuthModal(null)}>
-        <CancelIcon />
-      </div>
       <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md flex flex-col justify-center">
+        <div className="flex justify-end mb-1">
+          <button
+            className="border-1 border-gray-100 cursor-pointer rounded-full p-2 text-black/60"
+            onClick={() => setAuthModal(null)}
+            aria-label="Close"
+          >
+            <CancelIcon />
+          </button>
+        </div>
         <div>
           <Image
             src="/logo.png"
@@ -53,18 +57,17 @@ export default function SignIn() {
             onChange={handleChange}
             placeholder="e.g. 07083009249"
           />
-          <Button type="submit" >Sign in</Button> 
-        
+          <Button type="submit">Sign in</Button>
         </form>
         <p className="text-base text-center text-gray-600 mt-4">
           New to Foodnest?{" "}
-            <button
+          <button
             type="button"
             className="text-blue-600 hover:underline leading-normal"
             onClick={() => setAuthModal("signup")}
-            >
+          >
             Sign up
-            </button>
+          </button>
         </p>
       </div>
     </div>
