@@ -2,10 +2,11 @@
 import React, { useState } from "react";
 import { products } from "@/asset/Product";
 import Image from "next/image";
-import Button from "./button";
+
+
 
 const CategoryMenu = () => {
-  const [addedIndex, setAddedIndex] = useState<number | null>(null);
+
   
   return (
     <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-7 mt-8 ">
@@ -23,7 +24,7 @@ const CategoryMenu = () => {
             className="rounded-xl object-cover bg-gray-50 w-30 h-30 p-2"
           />
             <div className="flex items-center gap-2 mb-2">
-              <button
+              <button 
                 className="w-8 h-8 flex items-center justify-center font-medium text-2xl text-center bg-gray-50 rounded-full p-0"
                 
               >-</button>
@@ -46,10 +47,9 @@ const CategoryMenu = () => {
 
             <p className="text-gray-500 text-sm mb-2">{item.description}</p>
             <button
-              onClick={() => setAddedIndex(index)}
               className="bg-primary text-white bg-[#6e4231] w-full px-4 py-3 rounded-full text-sm font-medium hover:bg-primary-dark transition"
             >
-              {addedIndex === index ? "Added to cart" : "Add to Cart"}
+              Add to Cart
             </button>
           </div>
         </div>

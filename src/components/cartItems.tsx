@@ -6,6 +6,7 @@ import { CiEdit } from "react-icons/ci";
 import { CancelIcon } from "@/asset/asset";
 import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
+import { ShoppingIcon } from "@/asset/asset";
 
 const CartItems: React.FC = () => {
     const { toggleCart} = useContext(AppContext)!;
@@ -14,7 +15,7 @@ const CartItems: React.FC = () => {
       <div className="space-y-3 ">
         <h2 className="font-medium text-xl text-shadow-black leading-7">
           <div className="flex items-center justify-between">
-            <span>Cart</span>
+            <span className="flex items-center gap-3"><ShoppingIcon /> Cart</span>
             <button className="text-gray-500 hover:text-gray-700 transition lg:hidden" onClick={toggleCart}>
               <CancelIcon />
             </button>

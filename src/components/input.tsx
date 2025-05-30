@@ -1,30 +1,29 @@
 import React from "react";
 
-const Input = () => {
-  return (
-    <div>
-      <div className="w-full flex justify-between rounded-lg items-center py-2 px-4  border-gray-400 bg-[#fff]">
-        <input
-          type="text"
-          placeholder="Search a category or menu"
-          className="w-full  border-none outline-0  text-base "
-        />
+interface InputFieldProps {
+  label?: string;
+  type?: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+}
 
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          className="w-5 h-5 text-gray-500 cursor-pointer"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-          />
-        </svg>
-      </div>
+const Input: React.FC<InputFieldProps> = ({ label, type = "text", name, value, onChange, placeholder }) => {
+  return (
+    <div className="flex flex-col gap-1 w-full">
+      <label htmlFor={name} className="text-sm font-medium text-gray-700">
+        {label}
+      </label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className="border border-gray-300 rounded-md px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#6e4231]  transition-colors duration-200 w-full"
+      />
     </div>
   );
 };

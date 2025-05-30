@@ -11,6 +11,8 @@ import Link from "next/link";
 import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
 
+
+
 const Sidebar: React.FC = () => {
   const sidebarItems = [
     {
@@ -35,9 +37,11 @@ const Sidebar: React.FC = () => {
     },
   ];
 
-  const { isSidebarOpen } = useContext(AppContext)!;
+  const { isSidebarOpen,setAuthModal } = useContext(AppContext)!;
+ 
 
   return (
+
     <>
       <div
         className={`bg-white fixed bottom-0 left-0 w-full h-16 flex justify-between items-center  py-2 shadow-lg z-50 lg:static lg:h-screen lg:w-20 lg:flex-col lg:justify-between lg:items-center lg:px-4 lg:py-5 transition-transform duration-500 ${
@@ -71,8 +75,8 @@ const Sidebar: React.FC = () => {
             ))}
 
             {/* Profile/logout as a nav item on mobile only */}
-            <Link
-              href="/logout"
+            <button
+              onClick={() => setAuthModal('signin')}
               className="flex-1 flex flex-col items-center lg:hidden"
             >
               <Image
@@ -82,13 +86,15 @@ const Sidebar: React.FC = () => {
                 height={40}
                 className="w-7 h-7 rounded-full object-cover"
               />
-              <span className="mt-1 text-[12px] lg:mt-2 lg:text-[14px]">Profile</span>
-            </Link>
+              <span className="mt-1 text-[12px] lg:mt-2 lg:text-[14px]">
+                Profile
+              </span>
+            </button>
           </nav>
         </div>
 
         {/* Profile/logout at the bottom on desktop only */}
-        <Link href="/logout">
+        <button onClick={() => setAuthModal('signin')} >
           <div className="hidden lg:flex flex-col items-center justify-center ">
             <Image
               src="/profile.png"
@@ -101,7 +107,7 @@ const Sidebar: React.FC = () => {
               Profile
             </span>
           </div>
-        </Link>
+        </button>
       </div>
     </>
   );
