@@ -11,15 +11,16 @@ const Navbar = () => {
 
   return (
     <div className="">
-      <div className="lg:hidden flex items-center justify-between w-full pb-4">
-        <div className=" cursor-pointer text-black/100" onClick={toggleSidebar}>
+      {/* Mobile Navbar */}
+      <div className="lg:hidden flex items-center justify-between w-full pb-4 md:pb-6">
+        <div className="cursor-pointer text-black/100" onClick={toggleSidebar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-10"
+            className="size-10 md:size-12"
           >
             <path
               strokeLinecap="round"
@@ -30,27 +31,31 @@ const Navbar = () => {
         </div>
 
         <div
-          className="size-8 text-red-600 bg-white shadow-sm rounded-md flex items-center justify-center cursor-pointer"
+          className="size-8 md:size-10 text-red-600 bg-white shadow-sm rounded-md flex items-center justify-center cursor-pointer"
           onClick={toggleCart}
         >
-          <span className="w-5 h-5 flex items-center justify-center">
+          <span className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center">
             <ShoppingIcon />
           </span>
         </div>
       </div>
 
-      <div className="mb-4 lg:hidden">
-        <span className="text-lg font-semibold py-2">Hello there!</span>
-        <p className="text-gray-500 text-sm mt-1">
-          Welcome to FoodNest. Find your favorite meals!
+      {/* Greeting Section */}
+      <div className="mb-1 lg:hidden md:mb-3">
+        <span className="text-lg md:text-2xl font-semibold py-1">
+          Hello there!
+        </span>
+        <p className="text-gray-500 text-sm md:text-lg mt-1">
+          Find your favorite meals!
         </p>
       </div>
 
-      <div className="lg:flex  lg:items-center  w-full lg:justify-between">
-        <h2 className="text-2xl font-medium hidden md:block">
+      {/* Main Navbar */}
+      <div className="lg:flex lg:items-center w-full lg:justify-between ">
+        <h2 className=" text-black/70 md:text-2xl lg:block font-medium hidden md:hidden">
           Choose category
         </h2>
-        <div className="  w-full max-w-md ">
+        <div className="w-full max-w-md">
           <Input
             name="search"
             value=""

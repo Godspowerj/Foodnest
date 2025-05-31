@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
   const { isSidebarOpen,setAuthModal } = useContext(AppContext)!;
   const pathname = usePathname();
   const isActive = (href: string) => {
-        return pathname === href ? " transition-all duration-200 transform scale-105 text-white bg-[#6e4231] rounded-lg lg:px-3 px-2 py-2" : " text-gray-500 hover:text-[#6e4231] transition-colors duration-200 flex items-center justify-center";
+        return pathname === href ? " transition-all duration-200 transform scale-105 text-white bg-[#6e4231] rounded-lg lg:px-3  py-2" : " text-gray-500 hover:text-[#6e4231] transition-colors duration-200 flex items-center justify-center";
     };
 
   return (
@@ -52,17 +52,7 @@ const Sidebar: React.FC = () => {
         }`}
       >
         <div className="flex items-center justify-between w-full lg:flex-col lg:items-center gap-10">
-          <div className="hidden lg:flex flex-col items-center">
-            <Image
-              src="/logo.png"
-              alt="Logo"
-              width={100}
-              height={100}
-              className="w-8 h-8 object-contain mb-2"
-            />
-            <h1 className="text-[14px] font-bold">FoodNest</h1>
-          </div>
-
+          
           <nav className="flex w-full items-center justify-evenly lg:flex-col lg:space-y-5 lg:w-auto">
             {sidebarItems.map((item, index) => (
               <Link
