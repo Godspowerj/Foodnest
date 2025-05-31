@@ -30,7 +30,7 @@ const CategoryMenu = () => {
               />
               <div className="flex items-center gap-2 mb-2">
                 <button onClick={() => updateCartQuantity(item.id, 1)} className="w-8 h-8 flex items-center justify-center font-medium text-2xl text-center bg-gray-50 rounded-full p-0">-</button>
-                <span className="w-6 text-center">{item.quantity || 0}</span>
+                <span className="w-6 text-center">3</span>
                 <button  onClick={() => updateCartQuantity(item.id, -1)} className="w-8 h-8 flex items-center justify-center font-medium text-2xl text-center bg-gray-50 rounded-full p-0">+</button>
               </div>
             </div>

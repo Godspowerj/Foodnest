@@ -13,7 +13,7 @@ const CartItems: React.FC = () => {
     const { toggleCart, cart ,removeFromCart } = useContext(AppContext)!;
   return (
     <>
-      <div className="space-y-3 h-full">
+      <div className="space-y-3 ">
         <h2 className="font-medium text-xl text-shadow-black leading-7">
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-3"><ShoppingIcon /> Cart</span>
@@ -22,7 +22,7 @@ const CartItems: React.FC = () => {
             </button>
           </div>
         </h2>
-        <div className="overflow-y-auto max-h-[500px] ">
+        <div className="overflow-y-auto max-h-[350px] ">
           { cart.map((item, index) => (
             <div key={index} className="bg-white rounded-2xl flex gap-4 space-y-1 p-1  mb-4">
               <div className="sm:flex flex-col  items-center ">
@@ -53,6 +53,12 @@ const CartItems: React.FC = () => {
             </div>
           ))}
         </div>
+        {cart .length === 0 && (
+            <div className="flex flex-col items-center justify-center h-full">
+            <Image src="/empty-cart.png" alt="Empty Cart" width={400} height={400} />
+            <p className="text-gray-500 mt-4">Your cart is empty</p>
+            </div>
+        )}
         <div>
           <div className="inline-block w-full space-y-3 py-4 border-gray-400 border-b-2  border-dashed ">
             <div className="flex justify-between items-center text-base">

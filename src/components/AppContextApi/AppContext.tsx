@@ -27,6 +27,8 @@ type CartItem = {
   price: number;
   image: string;
   quantity: number;
+  description?: string;
+
 };
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -60,7 +62,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
         );
       }
       // If not in cart, add with quantity 1
-      return [...prev, { ...item, quantity: 1 }];
+      return [
+        ...prev,
+        {
+          ...item,
+          image: typeof item.image === "string" ? item.image : (item.image as any).src ?? "",
+          quantity: 1,
+        },
+      ];
     });
   };
 
