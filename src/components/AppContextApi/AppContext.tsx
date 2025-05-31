@@ -1,4 +1,5 @@
 "use client";
+import { products } from "@/asset/Product";
 import React, { createContext, useState } from "react";
 
 type AppContextType = {
@@ -11,6 +12,9 @@ type AppContextType = {
   setAuthModal: React.Dispatch<
     React.SetStateAction<null | "signin" | "signup">
   >;
+  selectCategory: string;
+  SetSelectCategory: React.Dispatch<React.SetStateAction<string>>;
+  filteredData: { category: string }[];
 };
 type CartItem = {
   id: number;
@@ -30,21 +34,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const [authModal, setAuthModal] = useState<null | "signin" | "signup">(null);
   const toggleCart = () => setIsCartOpen((prev) => !prev);
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [selectCategory, SetSelectCategory] = useState<string>("All");
 
-  // const addToCart = (item: CartItem) => {
-  //   setCart((prevCart) => {
-  //     const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
-  //     if (existingItem) {
-  //       return prevCart.map((cartItem) =>
-  //         cartItem.id === item.id
-  //           ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
-  //           : cartItem
-  //       );
-  //     } else {
-  //       return [...prevCart, item];
-  //     }
-  //   });
-  // };
+  const filteredData =
+    selectCategory === "All"
+      ? products
+      : products.filter((item) => item.category === selectCategory);
 
   const Contextvalue = {
     isSidebarOpen,
@@ -52,10 +47,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     isCartOpen,
     toggleCart,
     cart,
-    // setCart,
-    // addToCart,
     authModal,
     setAuthModal,
+    selectCategory,
+    SetSelectCategory,
+    filteredData,
   };
   return (
     <AppContext.Provider value={Contextvalue}>{children}</AppContext.Provider>

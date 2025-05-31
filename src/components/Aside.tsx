@@ -16,7 +16,7 @@ const Aside: React.FC = () => {
       )}
 
       <div
-        className={`bg-white fixed lg:static top-0 right-0 w-full lg:w-96 h-screen p-4 space-y-6 overflow-y-scroll scrollbar-hide rounded-t-md transition-transform duration-500 z-50
+        className={`bg-white fixed lg:static top-0 right-0 w-full lg:w-96 h-screen p-6 space-y-6 overflow-y-scroll scrollbar-hide lg:scrollbar-hide rounded-t-md transition-transform duration-500 z-50
     ${
       isCartOpen
         ? "translate-y-[90px] lg:translate-y-full"

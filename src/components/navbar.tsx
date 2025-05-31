@@ -36,12 +36,13 @@ const Navbar = () => {
         <h2 className="text-2xl font-medium hidden md:block">
           Choose category
         </h2>
-        <div className=" lg:block w-full max-w-md">
+        <div className="  w-full max-w-md ">
           <Input
             name="search"
             value=""
             onChange={() => {}}
             placeholder="Search for food, drinks, etc."
+            className="bg-white"
           />
         </div>
       </div>

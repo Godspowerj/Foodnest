@@ -39,7 +39,6 @@ export default function RootLayout({
       <body className="antialiased ">
         <AppProvider>
           <div className="flex items-center  justify-between h-screen  ">
-            
             <Sidebar />
 
             <main className="bg-[#cfcfcf] flex-1 ">{children}</main>

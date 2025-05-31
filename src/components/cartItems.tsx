@@ -12,7 +12,7 @@ const CartItems: React.FC = () => {
     const { toggleCart} = useContext(AppContext)!;
   return (
     <>
-      <div className="space-y-3 ">
+      <div className="space-y-3 h-full">
         <h2 className="font-medium text-xl text-shadow-black leading-7">
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-3"><ShoppingIcon /> Cart</span>
@@ -21,7 +21,7 @@ const CartItems: React.FC = () => {
             </button>
           </div>
         </h2>
-        <div className="overflow-y-auto max-h-[400px]">
+        <div className="overflow-y-auto max-h-[500px] ">
           {products.map((item, index) => (
             <div key={index} className="bg-white rounded-2xl flex gap-4 space-y-1 p-1  mb-4">
               <div className="sm:flex flex-col  items-center ">

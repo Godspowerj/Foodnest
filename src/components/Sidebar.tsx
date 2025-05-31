@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
-
+import { usePathname } from "next/navigation";
 
 
 const Sidebar: React.FC = () => {
@@ -23,28 +23,31 @@ const Sidebar: React.FC = () => {
     {
       icon: <OrderIcon />,
       name: "Orders",
-      path: "/",
+      path: "*",
     },
     {
       icon: <HistoryIcon />,
       name: "History",
-      path: "/",
+      path: "*",
     },
     {
       icon: <WalletIcon />,
       name: "Wallet",
-      path: "/",
+      path: "*",
     },
   ];
 
   const { isSidebarOpen,setAuthModal } = useContext(AppContext)!;
- 
+  const pathname = usePathname();
+  const isActive = (href: string) => {
+        return pathname === href ? " transition-all duration-200 transform scale-105 text-white bg-[#6e4231] rounded-lg px-3 py-2" : " text-gray-500 hover:text-[#6e4231] transition-colors duration-200 flex items-center justify-center";
+    };
 
   return (
 
     <>
       <div
-        className={`bg-white fixed bottom-0 left-0 w-full h-16 flex justify-between items-center  py-2 shadow-lg z-50 lg:static lg:h-screen lg:w-20 lg:flex-col lg:justify-between lg:items-center lg:px-4 lg:py-5 transition-transform duration-500 ${
+        className={`bg-white fixed bottom-0 left-0 w-full h-16 flex justify-between items-center  py-2 shadow-lg z-50 lg:static lg:h-screen lg:w-20 lg:flex-col lg:justify-between lg:items-center lg:px-5 lg:py-6 transition-transform duration-500 ${
           isSidebarOpen ? "translate-y-0" : "translate-y-full lg:translate-y-0"
         }`}
       >
@@ -65,7 +68,7 @@ const Sidebar: React.FC = () => {
               <Link
                 href={item.path}
                 key={index}
-                className="flex-1 flex flex-col items-center"
+               className={`flex-1 flex flex-col items-center ${isActive(item.path)}`}
               >
                 <span>{item.icon}</span>
                 <span className="mt-1 text-[12px] lg:mt-2 lg:text-[14px]">

@@ -6,9 +6,11 @@ import SignIn from "@/components/signin";
 import SignUp from "@/components/signup";
 import { useContext } from "react";
 import { AppContext } from "@/components/AppContextApi/AppContext";
+import { log } from "console";
 
 const Homepage = () => {
-  const { authModal, setAuthModal } = useContext(AppContext)!;
+  const { authModal } = useContext(AppContext)!;
+  
   return (
     <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-4">
       <div className="w-full max-w-5xl mx-auto flex flex-col ">
