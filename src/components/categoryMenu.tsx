@@ -2,10 +2,11 @@
 import React, { useContext } from "react";
 import Image from "next/image";
 import { AppContext } from "./AppContextApi/AppContext";
+import { Products } from "@/asset/Product";
 
 
 const CategoryMenu = () => {
-  const { filteredData,selectCategory } = useContext(AppContext)!;
+  const { filteredData,selectCategory,addToCart,updateCartQuantity, } = useContext(AppContext)!;
 
   return (
     <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-7 mt-8 ">
@@ -14,7 +15,7 @@ const CategoryMenu = () => {
           No items found in the "{selectCategory}" category.
         </div>
       ) : (
-        (filteredData as any[]).map((item, index) => (
+        (filteredData as Products[]).map((item, index) => (
           <div
             key={index}
             className="bg-white rounded-2xl shadow-md flex gap-4 p-4 hover:shadow-lg transition-shadow"
@@ -28,9 +29,9 @@ const CategoryMenu = () => {
                 className="rounded-xl object-cover bg-gray-50 w-30 h-30 p-2"
               />
               <div className="flex items-center gap-2 mb-2">
-                <button className="w-8 h-8 flex items-center justify-center font-medium text-2xl text-center bg-gray-50 rounded-full p-0">-</button>
-                <span className="w-6 text-center">3</span>
-                <button className="w-8 h-8 flex items-center justify-center font-medium text-2xl text-center bg-gray-50 rounded-full p-0">+</button>
+                <button onClick={() => updateCartQuantity(item.id, 1)} className="w-8 h-8 flex items-center justify-center font-medium text-2xl text-center bg-gray-50 rounded-full p-0">-</button>
+                <span className="w-6 text-center">{item.quantity || 0}</span>
+                <button  onClick={() => updateCartQuantity(item.id, -1)} className="w-8 h-8 flex items-center justify-center font-medium text-2xl text-center bg-gray-50 rounded-full p-0">+</button>
               </div>
             </div>
             <div className="flex-1 flex flex-col justify-between ">
@@ -41,7 +42,7 @@ const CategoryMenu = () => {
                 </span>
               </div>
               <p className="text-gray-500 text-sm mb-2">{item.description}</p>
-              <button className="bg-primary text-white bg-[#6e4231] w-full px-4 py-3 rounded-full text-sm font-medium hover:bg-primary-dark transition">
+              <button onClick={() => addToCart(item)} className="bg-primary text-white bg-[#6e4231] w-full px-4 py-3 rounded-full text-sm font-medium hover:bg-primary-dark transition">
                 Add to Cart
               </button>
             </div>

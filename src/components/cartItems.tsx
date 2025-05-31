@@ -8,8 +8,9 @@ import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
 import { ShoppingIcon } from "@/asset/asset";
 
+
 const CartItems: React.FC = () => {
-    const { toggleCart} = useContext(AppContext)!;
+    const { toggleCart, cart ,removeFromCart } = useContext(AppContext)!;
   return (
     <>
       <div className="space-y-3 h-full">
@@ -22,7 +23,7 @@ const CartItems: React.FC = () => {
           </div>
         </h2>
         <div className="overflow-y-auto max-h-[500px] ">
-          {products.map((item, index) => (
+          { cart.map((item, index) => (
             <div key={index} className="bg-white rounded-2xl flex gap-4 space-y-1 p-1  mb-4">
               <div className="sm:flex flex-col  items-center ">
                 <Image
@@ -40,7 +41,7 @@ const CartItems: React.FC = () => {
                     <h2 className="text-sm mb-1">{item.name}</h2>
                     <div className="flex items-center gap-2 mb-2">
                       <span className="font-bold ">x1</span>
-                      <button className="text-sm bg-[#fdefed] flex items-center gap-2 px-2 py-1 rounded-lg">
+                      <button onClick={() => removeFromCart(item.id)} className="text-sm bg-[#fdefed] flex items-center gap-2 px-2 py-1 rounded-lg">
                         remove <CiEdit />
                       </button>
                     </div>
