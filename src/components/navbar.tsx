@@ -11,31 +11,39 @@ const Navbar = () => {
 
   return (
     <div className="">
-      <div className="lg:hidden flex items-center justify-between w-full pb-2">
-        <div
-          className="size-14 cursor-pointer text-black/100"
-          onClick={toggleSidebar}
-        >
-          {isSidebarOpen ? (
-            <span className="w-10 h-10 inline-block"><CancelIcon /></span>
-          ) : (
-            <span className="w-10 h-10 inline-block"><HamburgerIcon /></span>
-          )}
+      <div className="lg:hidden flex items-center justify-between w-full pb-4">
+        <div className=" cursor-pointer text-black/100" onClick={toggleSidebar}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-10"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"
+            />
+          </svg>
         </div>
 
         <div
-          className="size-10   text-red-600 bg-white shadow-sm  rounded-md flex items-center justify-center cursor-pointer"
+          className="size-8 text-red-600 bg-white shadow-sm rounded-md flex items-center justify-center cursor-pointer"
           onClick={toggleCart}
         >
-          <ShoppingIcon />
+          <span className="w-5 h-5 flex items-center justify-center">
+            <ShoppingIcon />
+          </span>
         </div>
       </div>
 
-      <div className="mb-4 ">
-        <span className="text-lg font-semibold  py-2 ">
-          Hello there!
-        </span>
-        <p className="text-gray-500 text-sm mt-1">Welcome to FoodNest. Find your favorite meals!</p>
+      <div className="mb-4 lg:hidden">
+        <span className="text-lg font-semibold py-2">Hello there!</span>
+        <p className="text-gray-500 text-sm mt-1">
+          Welcome to FoodNest. Find your favorite meals!
+        </p>
       </div>
 
       <div className="lg:flex  lg:items-center  w-full lg:justify-between">
