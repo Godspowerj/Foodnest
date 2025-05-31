@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
   const { isSidebarOpen,setAuthModal } = useContext(AppContext)!;
   const pathname = usePathname();
   const isActive = (href: string) => {
-        return pathname === href ? " transition-all duration-200 transform scale-105 text-white bg-[#6e4231] rounded-lg px-3 py-2" : " text-gray-500 hover:text-[#6e4231] transition-colors duration-200 flex items-center justify-center";
+        return pathname === href ? " transition-all duration-200 transform scale-105 text-white bg-[#6e4231] rounded-lg lg:px-3 px-2 py-2" : " text-gray-500 hover:text-[#6e4231] transition-colors duration-200 flex items-center justify-center";
     };
 
   return (

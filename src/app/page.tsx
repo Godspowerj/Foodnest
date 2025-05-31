@@ -6,10 +6,10 @@ import SignIn from "@/components/signin";
 import SignUp from "@/components/signup";
 import { useContext } from "react";
 import { AppContext } from "@/components/AppContextApi/AppContext";
-import { log } from "console";
+
 
 const Homepage = () => {
-  const { authModal } = useContext(AppContext)!;
+  const { authModal,selectCategory } = useContext(AppContext)!;
   
   return (
     <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-4">
@@ -17,10 +17,12 @@ const Homepage = () => {
         <Navbar />
         <Category />
         <div className="flex justify-between items-center mt-5 ">
-          <p className="font-semibold text-shadow-black text-md leading-0.5">
-            coffee menu
+          <p className="font-semibold text-black/80 text-md leading-0.5">
+            {selectCategory} menu
           </p>
-          <span className="text-sm text-gray-400">12 coffee results</span>
+          <span className="text-sm text-gray-400">
+            {selectCategory === "All" ? " " : `12 ${selectCategory} results`}
+          </span>
         </div>
         <CategoryMenu />
         {authModal === "signin" && (
