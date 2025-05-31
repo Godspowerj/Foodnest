@@ -26,7 +26,7 @@ type CartItem = {
   name: string;
   price: number;
   image: string;
-  quantity?: number;
+  quantity: number;
 };
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
