@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import Input from "./input";
 import Image from "next/image";
@@ -7,14 +7,16 @@ import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
 
 const Navbar = () => {
-  const {toggleSidebar,isSidebarOpen,toggleCart } = useContext(AppContext)!;
-  
+  const { toggleSidebar, isSidebarOpen, toggleCart } = useContext(AppContext)!;
+
   return (
     <div className="">
       <div className="lg:hidden flex items-center justify-between w-full pb-2">
-        
-        <div className="size-7 cursor-pointer duration-500 transition-transform " onClick={toggleSidebar}>
-          {isSidebarOpen ? <CancelIcon /> :<HamburgerIcon /> }
+        <div
+          className="size-8 cursor-pointer text-white  duration-500 transition-transform bg-[#6e4231] rounded-full flex items-center justify-center"
+          onClick={toggleSidebar}
+        >
+          {isSidebarOpen ? <CancelIcon /> : <HamburgerIcon />}
         </div>
 
         <div className="flex flex-col items-center">
@@ -28,7 +30,10 @@ const Navbar = () => {
           <h1 className="text-sm font-bold">FoodNest</h1>
         </div>
 
-        <div className="size-7 " onClick={toggleCart}>
+        <div
+          className="size-8 bg-[#6e4231] text-white rounded-full flex items-center justify-center cursor-pointer"
+          onClick={toggleCart}
+        >
           <ShoppingIcon />
         </div>
       </div>
