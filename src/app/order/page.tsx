@@ -3,7 +3,7 @@ import React from "react";
 
 const OrderPage: React.FC = () => {
   return (
-    <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-4">
+    <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-5">
       <div className=" mx-auto ">
         <Navbar />
         <section className="mb-8">
@@ -86,7 +86,7 @@ const OrderPage: React.FC = () => {
                 type="radio"
                 name="payment"
                 defaultChecked
-                className="accent-orange-500"
+                className="accent-red-600"
               />
               Pay on Delivery
             </label>
@@ -94,7 +94,7 @@ const OrderPage: React.FC = () => {
               <input
                 type="radio"
                 name="payment"
-                className="accent-orange-500"
+                className="accent-red-600"
               />
               Card Payment
             </label>
@@ -102,7 +102,7 @@ const OrderPage: React.FC = () => {
         </section>
 
         {/* Place Order Button */}
-        <button className="w-full py-4 bg-orange-500 text-white rounded-lg text-lg font-bold hover:bg-orange-600 transition">
+        <button className="w-full py-4 text-white drop-shadow-lg bg-[#6e4231] rounded-lg text-lg font-bold  transition">
           Place Order
         </button>
       </div>

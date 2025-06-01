@@ -45,7 +45,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* Greeting Section */}
-      <div className={`${pathname === '/order' ? 'hidden' : 'flex'} mb-1 lg:hidden md:mb-3`}>
+      <div className={`${pathname === '/order' ? 'hidden' : 'block'} mb-1 lg:hidden md:mb-3`}>
         <span className="text-2xl md:text-2xl font-semibold py-1">
           Hello there!
         </span>
