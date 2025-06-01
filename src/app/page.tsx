@@ -9,7 +9,7 @@ import { AppContext } from "@/components/AppContextApi/AppContext";
 
 
 const Homepage = () => {
-  const { authModal,selectCategory,categoryCount } = useContext(AppContext)!;
+  const {selectCategory,categoryCount } = useContext(AppContext)!;
   
   return (
     <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-4">
@@ -25,12 +25,7 @@ const Homepage = () => {
           </span>
         </div>
         <CategoryMenu />
-        {authModal === "signin" && (
-          <SignIn />
-        )}
-        {authModal === "signup" && (
-          <SignUp />
-        )}
+        
       </div>
     </div>
   );

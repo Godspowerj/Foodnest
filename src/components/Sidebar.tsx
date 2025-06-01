@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
     {
       icon: <OrderIcon />,
       name: "Orders",
-      path: "*",
+      path: "/order",
     },
     {
       icon: <HistoryIcon />,
