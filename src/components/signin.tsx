@@ -33,15 +33,7 @@ export default function SignIn() {
             <CancelIcon />
           </button>
         </div>
-        <div>
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            width={100}
-            height={100}
-            className="w-8 h-8 object-contain mb-2 mx-auto"
-          />
-        </div>
+        
 
         <div className="text-center mb-6">
           <h2 className="text-2xl font-medium text-center ">Sign In</h2>

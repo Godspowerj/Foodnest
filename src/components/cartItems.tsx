@@ -50,7 +50,7 @@ const CartItems: React.FC = () => {
                       <span className="text-sm ">{item.quantity}x</span>
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className="text-sm bg-[#fdefed] flex items-center gap-2 px-2 py-1 rounded-lg"
+                        className="text-[12px] bg-[#fdefed] flex items-center gap-2 px-2 py-[2px] rounded-lg"
                       >
                         remove
                       </button>

@@ -6,7 +6,7 @@ import { Products } from "@/asset/Product";
 
 
 const CategoryMenu = () => {
-  const { filteredData,selectCategory,addToCart,updateCartQuantity, } = useContext(AppContext)!;
+  const { filteredData,selectCategory,addToCart,updateCartQuantity,cart } = useContext(AppContext)!;
 
   return (
     <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-7 mt-8 ">
@@ -30,7 +30,7 @@ const CategoryMenu = () => {
               />
               <div className="flex items-center gap-2 mb-2">
                 <button onClick={() => updateCartQuantity(item.id, 1)} className="w-8 h-8 flex items-center justify-center font-medium text-2xl text-center bg-gray-50 rounded-full p-0">-</button>
-                <span className="w-6 text-center">{0}</span>
+                <span className="w-6 text-center">{cart.find(cartItem => cartItem.id === item.id)?.quantity || 0}</span>
                 <button  onClick={() => updateCartQuantity(item.id, -1)} className="w-8 h-8 flex items-center justify-center font-medium text-2xl text-center bg-gray-50 rounded-full p-0">+</button>
               </div>
             </div>
@@ -43,7 +43,7 @@ const CategoryMenu = () => {
               </div>
               <p className="text-gray-500 text-sm mb-2">{item.description}</p>
               <button onClick={() => addToCart(item)} className="bg-primary text-white bg-[#6e4231] w-full px-4 py-3 rounded-full text-sm font-medium hover:bg-primary-dark transition">
-                Add to Cart
+                {cart.some((cartItem) => cartItem.id === item.id) ? "Added" : "Add to Cart"}
               </button>
             </div>
           </div>

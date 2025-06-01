@@ -35,13 +35,7 @@ export default function SignUp() {
             <CancelIcon />
           </button>
         </div>
-        <div className="text-center ">
-          <img
-            src="/logo.png"
-            alt="Logo"
-            className="w-8 h-8 object-contain mb-2 mx-auto"
-          />
-        </div>
+        
         <div>
           <h2 className="text-2xl font-medium text-center">Sign Up</h2>
           <p className="text-center text-gray-600">Sign up to continue</p>
