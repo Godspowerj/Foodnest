@@ -9,7 +9,7 @@ import { AppContext } from "@/components/AppContextApi/AppContext";
 
 
 const Homepage = () => {
-  const { authModal,selectCategory } = useContext(AppContext)!;
+  const { authModal,selectCategory,categoryCount } = useContext(AppContext)!;
   
   return (
     <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-4">
@@ -21,7 +21,7 @@ const Homepage = () => {
             {selectCategory} menu
           </p>
           <span className="text-sm text-gray-400">
-            {selectCategory === "All" ? " " : `12 ${selectCategory} results`}
+            {selectCategory === "All" ? " " : `${categoryCount} ${selectCategory} results`}
           </span>
         </div>
         <CategoryMenu />

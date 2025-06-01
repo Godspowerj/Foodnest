@@ -7,7 +7,8 @@ import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
 
 const Navbar = () => {
-  const { toggleSidebar, isSidebarOpen, toggleCart } = useContext(AppContext)!;
+  const { toggleSidebar, isSidebarOpen, toggleCart, cart } =
+    useContext(AppContext)!;
 
   return (
     <div className="">
@@ -37,8 +38,9 @@ const Navbar = () => {
           <span className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center">
             <ShoppingIcon />
           </span>
-            <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs font-bold rounded-full px-1.5 py-0.5 flex items-center justify-end">0</span>
-           
+          <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs font-bold rounded-full px-1.5 py-0.5 flex items-center justify-end">
+            {cart.length}
+          </span>
         </div>
       </div>
 

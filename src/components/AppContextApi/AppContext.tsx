@@ -19,6 +19,7 @@ type AppContextType = {
   removeFromCart: (id: number) => void;
   updateCartQuantity: (id: number, amount: number) => void;
   setCart: React.Dispatch<React.SetStateAction<CartItem[]>>;
+  categoryCount: number;
 };
 type CartItem = {
   id: number;
@@ -48,6 +49,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     selectCategory === "All"
       ? products
       : products.filter((item) => item.category === selectCategory);
+
+      const categoryCount = selectCategory === "All" ? 0 : products.filter((item) => item.category === selectCategory).length;
 
   // Function to add items to the cart
   const addToCart = (item: Products) => {
@@ -104,6 +107,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     filteredData,
     removeFromCart,
     updateCartQuantity,
+    categoryCount
   };
   return (
     <AppContext.Provider value={Contextvalue}>{children}</AppContext.Provider>
