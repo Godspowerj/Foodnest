@@ -1,7 +1,7 @@
 "use client";
 import { Products, products } from "@/asset/Product";
 import React, { createContext, useState } from "react";
-
+import { useRouter } from "next/router";
 type AppContextType = {
   cart: CartItem[];
   addToCart: (item: Products) => void;
@@ -20,6 +20,8 @@ type AppContextType = {
   updateCartQuantity: (id: number, amount: number) => void;
   setCart: React.Dispatch<React.SetStateAction<CartItem[]>>;
   categoryCount: number;
+  placeOrderData: () => void;
+  placeOrder: PlaceOrder;
 };
 type CartItem = {
   id: number;
@@ -29,8 +31,11 @@ type CartItem = {
   image: string;
   quantity: number;
   description?: string;
-
 };
+type PlaceOrder = {
+  items: CartItem[];
+}
+
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -43,6 +48,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const toggleCart = () => setIsCartOpen((prev) => !prev);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectCategory, SetSelectCategory] = useState<string>("All");
+  const [placeOrder, setPlaceOrder] = useState<PlaceOrder>({items:[]});
 
   // Filter products based on selected category
   const filteredData =
@@ -76,6 +82,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
+  const placeOrderData = () => {
+   setPlaceOrder({items:cart});
+   setCart([]);
+  }
+
   const removeFromCart = (id: number) => {
     setCart((prev) => prev.filter((cartItem) => cartItem.id !== id));
   };
@@ -107,7 +118,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     filteredData,
     removeFromCart,
     updateCartQuantity,
-    categoryCount
+    categoryCount,
+    placeOrderData,
+    placeOrder,
   };
   return (
     <AppContext.Provider value={Contextvalue}>{children}</AppContext.Provider>

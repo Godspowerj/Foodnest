@@ -1,7 +1,12 @@
+"use client";
 import Navbar from "@/components/navbar";
 import React from "react";
+import { useContext } from "react";
+import { AppContext } from "@/components/AppContextApi/AppContext";
 
 const OrderPage: React.FC = () => {
+  const { placeOrderData, placeOrder } = useContext(AppContext)!;
+
   return (
     <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-5">
       <div className=" mx-auto ">
@@ -23,28 +28,37 @@ const OrderPage: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="px-2 py-2">Chicken Burger</td>
-                <td className="text-center px-2 py-2">2</td>
-                <td className="text-right px-2 py-2">₦3,000</td>
-              </tr>
-              <tr>
-                <td className="px-2 py-2">Fries</td>
-                <td className="text-center px-2 py-2">1</td>
-                <td className="text-right px-2 py-2">₦1,000</td>
-              </tr>
-              <tr>
-                <td className="px-2 py-2">Coke</td>
-                <td className="text-center px-2 py-2">2</td>
-                <td className="text-right px-2 py-2">₦800</td>
-              </tr>
+              {placeOrder.items.map((item) => (
+                <tr key={item.id}>
+                  <td className="px-2 py-2 flex items-center gap-3">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-12 h-12 object-cover rounded"
+                    />
+                    <span>{item.name}</span>
+                  </td>
+
+                  <td className="text-center px-2 py-2">{item.quantity}</td>
+                  <td className="text-right px-2 py-2">
+                    ₦{item.price * item.quantity}
+                  </td>
+                </tr>
+              ))}
             </tbody>
+
             <tfoot>
               <tr>
                 <td colSpan={2} className="text-right px-2 py-2 font-bold">
                   Total
                 </td>
-                <td className="text-right px-2 py-2 font-bold">₦4,800</td>
+                <td className="text-right px-2 py-2 font-bold">
+                  ₦
+                  {placeOrder.items.reduce(
+                    (acc, item) => acc + item.price * item.quantity,
+                    0
+                  )}
+                </td>
               </tr>
             </tfoot>
           </table>
@@ -91,11 +105,7 @@ const OrderPage: React.FC = () => {
               Pay on Delivery
             </label>
             <label className="flex items-center gap-2">
-              <input
-                type="radio"
-                name="payment"
-                className="accent-red-600"
-              />
+              <input type="radio" name="payment" className="accent-red-600" />
               Card Payment
             </label>
           </div>
