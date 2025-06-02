@@ -6,7 +6,7 @@ import { AppContext } from "@/components/AppContextApi/AppContext";
 import { CancelIcon } from "@/asset/asset";
 
 const OrderPage: React.FC = () => {
-  const { placeOrder } = useContext(AppContext)!;
+  const { placeOrder,removeFromCart } = useContext(AppContext)!;
 
   return (
     <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-5">
@@ -47,8 +47,8 @@ const OrderPage: React.FC = () => {
                       />
                       <div className="inline-flex items-center justify-between w-full">
                         <span>{item.name.slice(0,12)}...</span>
-                        
-                        <button className="text-sm ">
+
+                        <button onClick={() =>removeFromCart(item.id)} className="text-sm ">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"

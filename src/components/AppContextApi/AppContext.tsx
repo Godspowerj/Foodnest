@@ -1,7 +1,7 @@
 "use client";
 import { Products, products } from "@/asset/Product";
 import React, { createContext, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 type AppContextType = {
   cart: CartItem[];
   addToCart: (item: Products) => void;
@@ -49,6 +49,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectCategory, SetSelectCategory] = useState<string>("All");
   const [placeOrder, setPlaceOrder] = useState<PlaceOrder>({items:[]});
+  const router = useRouter();
 
   // Filter products based on selected category
   const filteredData =
@@ -85,6 +86,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const placeOrderData = () => {
    setPlaceOrder({items:cart});
    setCart([]);
+   router.push("/order");
   }
 
   const removeFromCart = (id: number) => {
