@@ -28,12 +28,12 @@ const Sidebar: React.FC = () => {
     {
       icon: <HistoryIcon />,
       name: "History",
-      path: "*",
+      path: "/*",
     },
     {
       icon: <WalletIcon />,
       name: "Wallet",
-      path: "*",
+      path: "/wallet",
     },
   ];
 
