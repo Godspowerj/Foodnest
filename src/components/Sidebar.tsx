@@ -90,7 +90,7 @@ const Sidebar: React.FC = () => {
                 height={40}
                 className="w-7 h-7 rounded-full object-cover"
               />
-              <span className=" text-[12px] text-gray-500 lg:mt-2 lg:text-[14px]">
+              <span className="text-[12px] text-gray-500 lg:mt-2 lg:text-[14px]">
                 Profile
               </span>
             </button>
