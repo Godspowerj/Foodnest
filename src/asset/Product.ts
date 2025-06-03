@@ -22,7 +22,7 @@ export interface Products {
     id: number;
     name: string;
     price: number;
-    image: StaticImageData;
+    image: string | StaticImageData;
     category: string;
     description: string;
 }

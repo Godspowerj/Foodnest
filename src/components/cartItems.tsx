@@ -68,10 +68,10 @@ const CartItems: React.FC = () => {
           <div>
             <div className="flex flex-col items-center justify-center h-full">
               <Image
-                src="/empty-cart.png"
+                src="/shopping.png"
                 alt="Empty Cart"
-                width={800}
-                height={800}
+                width={300}
+                height={300}
                 
               />
               <p className="text-gray-500 mt-4">Your cart is empty</p>

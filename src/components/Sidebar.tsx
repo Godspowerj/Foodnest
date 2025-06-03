@@ -36,12 +36,12 @@ const Sidebar: React.FC = () => {
     },
   ];
 
-  const { isSidebarOpen, setAuthModal, toggleSidebar, placeOrder } =
+  const { isSidebarOpen, setAuthModal, toggleSidebar, placeOrder,favorite } =
     useContext(AppContext)!;
   const pathname = usePathname();
   const isActive = (href: string) => {
     return pathname === href
-      ? " transition-all duration-200 transform scale-105 text-white bg-[#6e4231] rounded-lg lg:px-2 px-0 py-1"
+      ? " transition-all duration-200 transform scale-105 text-white bg-[#6e4231] rounded-lg lg:px-2 px-0 lg:py-2 py-1"
       : " text-gray-500 hover:text-[#6e4231] transition-colors duration-200 flex items-center justify-center";
   };
 
@@ -70,6 +70,12 @@ const Sidebar: React.FC = () => {
                       {placeOrder.length}
                     </span>
                   )}
+                  {item.name === "Favourite" && favorite.length > 0 && (
+                    <span className="absolute -top-2 -right-2 z-10 shadow-sm bg-[#6e4231] text-white text-xs rounded-full w-4 h-4 text-center">
+                      {favorite.length}
+                    </span>
+                  )}
+
                 </span>
 
                 <span className="text-[12px] lg:text-[14px]">

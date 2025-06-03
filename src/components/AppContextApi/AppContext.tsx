@@ -27,6 +27,9 @@ type AppContextType = {
   removeFromOrder: (id: number) => void;
   loading?: boolean;
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>;
+  favorite: favorite[];
+  setFavorite: React.Dispatch<React.SetStateAction<favorite[]>>;
+  handleFavourite: (item: favorite) => void;
 };
 type CartItem = {
   id: number;
@@ -38,6 +41,7 @@ type CartItem = {
   description?: string;
 };
 type PlaceOrder = CartItem[];
+type favorite = Products;
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -51,6 +55,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const [selectCategory, SetSelectCategory] = useState<string>("All");
   const [placeOrder, setPlaceOrder] = useState<PlaceOrder>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [favorite, setFavorite] = useState<favorite[]>([]);
   const router = useRouter();
 
   // Toggle functions for sidebar and cart
@@ -70,7 +75,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
       : products.filter((item) => item.category === selectCategory).length;
 
   // Function to add items to the cart
-  const addToCart = (item: Products) => {
+  const addToCart = (item:Products) => {
     setCart((prev) => {
       const found = prev.find((cartItem) => cartItem.id === item.id);
       if (found) {
@@ -104,12 +109,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
       setCart([]);
     }, 2000);
   };
- 
+
   // Function to place an order
   const placeOrderData = () => {
     handleLoading();
   };
-  
+
   const removeFromOrder = (id: number) => {
     setPlaceOrder((prev) => prev.filter((item) => item.id !== id));
     toast.error("Item removed from order");
@@ -118,6 +123,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const removeFromCart = (id: number) => {
     setCart((prev) => prev.filter((cartItem) => cartItem.id !== id));
     toast.error("Item removed from cart");
+  };
+
+  const handleFavourite = (item: favorite) => {
+    setFavorite((prev) => {
+      const found = prev.find((favItem) => favItem.name === item.name);
+      if (found) {
+        // If already in favorites, remove it
+        return prev.filter((favItem) => favItem.name !== item.name);
+      }
+      // If not in favorites, add it
+      return [...prev, item];
+    });
   };
 
   // Function to update the quantity of items in the cart
@@ -155,6 +172,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     removeFromOrder,
     loading,
     setLoading,
+    favorite,
+    setFavorite,
+    handleFavourite,
   };
   return (
     <AppContext.Provider value={Contextvalue}>{children}</AppContext.Provider>

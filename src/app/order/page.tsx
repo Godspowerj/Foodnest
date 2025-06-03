@@ -4,6 +4,7 @@ import React from "react";
 import { useContext } from "react";
 import { AppContext } from "@/components/AppContextApi/AppContext";
 import { CancelIcon } from "@/asset/asset";
+import Image from "next/image";
 
 const OrderPage: React.FC = () => {
   const { placeOrder,removeFromCart,removeFromOrder } = useContext(AppContext)!;
@@ -32,6 +33,7 @@ const OrderPage: React.FC = () => {
               {placeOrder.length === 0 ? (
                 <tr>
                   <td colSpan={3} className="text-center py-4 text-gray-500">
+                    <Image src="/empty-order.png"  alt="No Orders" className="w-24 h-24 mx-auto mb-4" width={100} height={100} />
                     You haven't placed any order yet
                   </td>
                 </tr>
