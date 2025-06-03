@@ -29,9 +29,9 @@ const CategoryMenu = () => {
                 className="rounded-xl object-cover bg-gray-50 w-30 h-30 p-2"
               />
               <div className="flex items-center gap-2 mb-2">
-                <button onClick={() => updateCartQuantity(item.id, 1)} className="w-8 h-8 flex items-center justify-center font-medium text-base hover:text-2xl hover:transform-transition  text-center bg-gray-50 rounded-full p-0">-</button>
+                <button onClick={() => updateCartQuantity(item.id, -1)} className="w-8 h-8 flex items-center justify-center font-medium text-base hover:text-2xl hover:transform-transition  text-center bg-gray-50 rounded-full p-0">-</button>
                 <span className="w-6 text-center">{cart.find(cartItem => cartItem.id === item.id)?.quantity || 0}</span>
-                <button  onClick={() => updateCartQuantity(item.id, -1)} className="w-8 h-8 flex items-center justify-center font-medium text-base hover:text-2xl hover:transform-transition   text-center bg-gray-50 rounded-full p-0">+</button>
+                <button  onClick={() => updateCartQuantity(item.id, 1)} className="w-8 h-8 flex items-center justify-center font-medium text-base hover:text-2xl hover:transform-transition   text-center bg-gray-50 rounded-full p-0">+</button>
               </div>
             </div>
             <div className="flex-1 flex flex-col justify-between ">

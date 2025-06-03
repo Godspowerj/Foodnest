@@ -37,7 +37,7 @@ const Sidebar: React.FC = () => {
     },
   ];
 
-  const { isSidebarOpen,setAuthModal } = useContext(AppContext)!;
+  const { isSidebarOpen,setAuthModal,toggleSidebar } = useContext(AppContext)!;
   const pathname = usePathname();
   const isActive = (href: string) => {
         return pathname === href ? " transition-all duration-200 transform scale-105 text-white bg-[#6e4231] rounded-lg lg:px-3  py-2" : " text-gray-500 hover:text-[#6e4231] transition-colors duration-200 flex items-center justify-center";
@@ -56,6 +56,7 @@ const Sidebar: React.FC = () => {
           <nav className="flex w-full items-center justify-evenly lg:flex-col lg:space-y-5 lg:w-auto">
             {sidebarItems.map((item, index) => (
               <Link
+               onClick={toggleSidebar}
                 href={item.path}
                 key={index}
                className={`flex-1 flex flex-col items-center ${isActive(item.path)}`}

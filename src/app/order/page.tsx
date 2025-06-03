@@ -6,7 +6,7 @@ import { AppContext } from "@/components/AppContextApi/AppContext";
 import { CancelIcon } from "@/asset/asset";
 
 const OrderPage: React.FC = () => {
-  const { placeOrder,removeFromCart } = useContext(AppContext)!;
+  const { placeOrder,removeFromCart,removeFromOrder } = useContext(AppContext)!;
 
   return (
     <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-5">
@@ -29,15 +29,14 @@ const OrderPage: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {placeOrder.items.length === 0 ? (
+              {placeOrder.length === 0 ? (
                 <tr>
                   <td colSpan={3} className="text-center py-4 text-gray-500">
-                    You haven't placed any order yet. Start adding delicious
-                    meals to your cart!
+                    You haven't placed any order yet
                   </td>
                 </tr>
               ) : (
-                placeOrder.items.map((item) => (
+                placeOrder.map((item) => (
                   <tr key={item.id}>
                     <td className="px-2 py-2 flex items-center gap-3">
                       <img
@@ -48,7 +47,7 @@ const OrderPage: React.FC = () => {
                       <div className="inline-flex items-center justify-between w-full">
                         <span>{item.name.slice(0,12)}...</span>
 
-                        <button onClick={() =>removeFromCart(item.id)} className="text-sm ">
+                        <button onClick={() =>removeFromOrder(item.id)} className="text-sm ">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -82,7 +81,7 @@ const OrderPage: React.FC = () => {
                 </td>
                 <td className="text-right px-2 py-2 font-bold">
                   ₦
-                  {placeOrder.items.reduce(
+                  {placeOrder.reduce(
                     (acc, item) => acc + item.price * item.quantity,
                     0
                   )}

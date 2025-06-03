@@ -22,6 +22,7 @@ type AppContextType = {
   categoryCount: number;
   placeOrderData: () => void;
   placeOrder: PlaceOrder;
+  removeFromOrder: (id: number) => void;
 };
 type CartItem = {
   id: number;
@@ -32,9 +33,8 @@ type CartItem = {
   quantity: number;
   description?: string;
 };
-type PlaceOrder = {
-  items: CartItem[];
-}
+type PlaceOrder = CartItem[];
+
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -42,14 +42,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [authModal, setAuthModal] = useState<null | "signin" | "signup">(null);
-  const toggleCart = () => setIsCartOpen((prev) => !prev);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectCategory, SetSelectCategory] = useState<string>("All");
-  const [placeOrder, setPlaceOrder] = useState<PlaceOrder>({items:[]});
+  const [placeOrder, setPlaceOrder] = useState<PlaceOrder>([]);
   const router = useRouter();
+
+  // Toggle functions for sidebar and cart
+  const toggleCart = () => setIsCartOpen((prev) => !prev);
+  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   // Filter products based on selected category
   const filteredData =
@@ -57,7 +59,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
       ? products
       : products.filter((item) => item.category === selectCategory);
 
-      const categoryCount = selectCategory === "All" ? 0 : products.filter((item) => item.category === selectCategory).length;
+  // Count of products in the selected category
+  const categoryCount =
+    selectCategory === "All"
+      ? 0
+      : products.filter((item) => item.category === selectCategory).length;
 
   // Function to add items to the cart
   const addToCart = (item: Products) => {
@@ -66,17 +72,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
       if (found) {
         // If already in cart, increase quantity
         return prev.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
+          cartItem.id === item.id ? { ...cartItem } : cartItem
         );
       }
       // If not in cart, add with quantity 1
       return [
+
         ...prev,
         {
           ...item,
-          image: typeof item.image === "string" ? item.image : (item.image as any).src ?? "",
+          image:
+          // Ensure image is a string, fallback to empty string if not
+            typeof item.image === "string"
+              ? item.image
+              : (item.image as any).src ?? "",
           quantity: 1,
         },
       ];
@@ -84,15 +93,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const placeOrderData = () => {
-   setPlaceOrder({items:cart});
-   setCart([]);
-   router.push("/order");
-  }
-
+    setPlaceOrder(cart);
+    setCart([]);
+    toggleCart();
+    router.push("/order");
+  };
+  const removeFromOrder = (id: number) => {
+  setPlaceOrder(prev => prev.filter(item => item.id !== id));
+};
   const removeFromCart = (id: number) => {
     setCart((prev) => prev.filter((cartItem) => cartItem.id !== id));
   };
 
+  // Function to update the quantity of items in the cart
   const updateCartQuantity = (id: number, amount: number) => {
     setCart((prev) =>
       prev
@@ -101,6 +114,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
             ? { ...cartItem, quantity: Math.max(1, cartItem.quantity + amount) }
             : cartItem
         )
+
         .filter((cartItem) => cartItem.quantity > 0)
     );
   };
@@ -123,6 +137,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     categoryCount,
     placeOrderData,
     placeOrder,
+    removeFromOrder
   };
   return (
     <AppContext.Provider value={Contextvalue}>{children}</AppContext.Provider>

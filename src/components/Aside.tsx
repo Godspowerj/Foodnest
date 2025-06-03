@@ -5,7 +5,7 @@ import { AppContext } from "./AppContextApi/AppContext";
 import { useContext } from "react";
 
 const Aside: React.FC = () => {
-  const { isCartOpen } = useContext(AppContext)!;
+  const { isCartOpen, } = useContext(AppContext)!;
   return (
     <>
       {isCartOpen && (
