@@ -12,8 +12,8 @@ const OrderPage: React.FC = () => {
     <div className="bg-[#f9f9fb] h-screen overflow-y-scroll scrollbar-hide w-full px-4 py-5">
       <div className=" mx-auto ">
         <Navbar />
-        <section className="mb-8">
-          <h2 className="mb-4 text-xl font-semibold text-[#6e4231]">Your Order</h2>
+        <section className="mb-8 ">
+          <h2 className="mb-4 text-xl font-semibold text-[#6e4231] ">Your Order</h2>
           <table className="w-full border-collapse">
             <thead>
               <tr>

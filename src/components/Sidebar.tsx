@@ -90,7 +90,7 @@ const Sidebar: React.FC = () => {
                 height={40}
                 className="w-7 h-7 rounded-full object-cover"
               />
-              <span className="mt-1 text-[12px] lg:mt-2 lg:text-[14px]">
+              <span className=" text-[12px] text-gray-500 lg:mt-2 lg:text-[14px]">
                 Profile
               </span>
             </button>
@@ -107,9 +107,7 @@ const Sidebar: React.FC = () => {
               height={40}
               className="w-10 h-10 rounded-full object-cover"
             />
-            <span className="mt-1 text-[12px] lg:mt-2 lg:text-[14px]">
-              Profile
-            </span>
+            
           </div>
         </button>
       </div>
