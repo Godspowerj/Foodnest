@@ -25,6 +25,8 @@ type AppContextType = {
   placeOrderData: () => void;
   placeOrder: PlaceOrder;
   removeFromOrder: (id: number) => void;
+  loading?: boolean;
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 type CartItem = {
   id: number;
@@ -49,6 +51,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectCategory, SetSelectCategory] = useState<string>("All");
   const [placeOrder, setPlaceOrder] = useState<PlaceOrder>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   // Toggle functions for sidebar and cart
@@ -94,11 +97,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
-  const placeOrderData = () => {
-    toast.success('Order placed successfully! check your order page', );
+  const handleLoading = () => {
+  setLoading(true);
+  setTimeout(() => {
+    setLoading(false);
     setPlaceOrder(cart);
+    toast.success('Order placed successfully! Check your order page');
     setCart([]);
-  };
+  }, 2000);
+};
+
+const placeOrderData = () => {
+  handleLoading();
+};
+
   const removeFromOrder = (id: number) => {
   setPlaceOrder(prev => prev.filter(item => item.id !== id));
     toast.error('Item removed from order');
@@ -141,7 +153,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     categoryCount,
     placeOrderData,
     placeOrder,
-    removeFromOrder
+    removeFromOrder,
+    loading,
+    setLoading,
   };
   return (
     <AppContext.Provider value={Contextvalue}>{children}</AppContext.Provider>

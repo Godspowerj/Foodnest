@@ -9,7 +9,8 @@ import { AppContext } from "./AppContextApi/AppContext";
 import { ShoppingIcon } from "@/asset/asset";
 
 const CartItems: React.FC = () => {
-  const { toggleCart, cart, removeFromCart,placeOrderData } = useContext(AppContext)!;
+  const { toggleCart, cart, removeFromCart, placeOrderData, loading } =
+    useContext(AppContext)!;
   return (
     <>
       <div className="space-y-3 ">
@@ -104,8 +105,19 @@ const CartItems: React.FC = () => {
                 ).toFixed(2)}
               </p>
             </div>
-            <button onClick={placeOrderData} className="bg-primary text-white bg-[#6e4231] w-full px-4 py-3 rounded-lg text-base font-medium hover:bg-primary-dark transition">
-              Place Order
+
+            <button
+              onClick={placeOrderData}
+              disabled={loading}
+              style={{
+                opacity: loading ? 0.6 : 1,
+                cursor: loading ? "not-allowed" : "pointer",
+                transition: "opacity 0.3s ease",
+              }}
+              className="bg-primary text-white bg-[#6e4231] w-full px-4 py-3 rounded-lg text-base font-medium hover:bg-primary-dark transition flex items-center gap-2 justify-center"
+            >
+              {loading && <div className="spinner"></div>}
+              {loading ? "Placing Order..." : "Place Order"}
             </button>
           </>
         )}
