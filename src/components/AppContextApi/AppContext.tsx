@@ -2,6 +2,8 @@
 import { Products, products } from "@/asset/Product";
 import React, { createContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from 'react-toastify';
+
 type AppContextType = {
   cart: CartItem[];
   addToCart: (item: Products) => void;
@@ -93,16 +95,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const placeOrderData = () => {
+    toast.success('Order placed successfully! check your order page', );
     setPlaceOrder(cart);
     setCart([]);
-    toggleCart();
-    router.push("/order");
   };
   const removeFromOrder = (id: number) => {
   setPlaceOrder(prev => prev.filter(item => item.id !== id));
+    toast.error('Item removed from order');
+    router.push('/order');
 };
   const removeFromCart = (id: number) => {
     setCart((prev) => prev.filter((cartItem) => cartItem.id !== id));
+    toast.error('Item removed from cart')
   };
 
   // Function to update the quantity of items in the cart

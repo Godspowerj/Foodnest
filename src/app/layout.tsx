@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import Aside from "@/components/Aside";
 import { AppProvider } from "@/components/AppContextApi/AppContext";
 import ModalManager from "@/components/modalManager";
+import ToastProvider from "@/components/toastProvider";
 
 export const metadata: Metadata = {
   title: "FoodNest",
@@ -48,8 +49,9 @@ export default function RootLayout({
             </div>
           </div>
           <ModalManager/>
+          <ToastProvider/>
         </AppProvider>
-        {/* <Popup /> */}
+
       </body>
     </html>
   );

@@ -34,5 +34,10 @@ body{
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+/* Fix Toastify font */
+.Toastify__toast {
+  font-family: inherit !important;
+}
+
 
 
