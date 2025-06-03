@@ -13,17 +13,17 @@ const OrderPage: React.FC = () => {
       <div className=" mx-auto ">
         <Navbar />
         <section className="mb-8">
-          <h2 className="mb-4 text-xl font-semibold">Your Order</h2>
+          <h2 className="mb-4 text-xl font-semibold text-[#6e4231]">Your Order</h2>
           <table className="w-full border-collapse">
             <thead>
               <tr>
-                <th className="text-left px-2 py-2 border-b border-gray-200">
+                <th className="text-left px-2 py-2 border-b text-[#6e4231] border-gray-200">
                   Item
                 </th>
-                <th className="text-center px-2 py-2 border-b border-gray-200">
+                <th className="text-center px-2 py-2 border-b text-[#6e4231] border-gray-200">
                   Qty
                 </th>
-                <th className="text-right px-2 py-2 border-b border-gray-200">
+                <th className="text-right px-2 py-2 border-b text-[#6e4231] border-gray-200">
                   Price
                 </th>
               </tr>
@@ -76,10 +76,10 @@ const OrderPage: React.FC = () => {
 
             <tfoot>
               <tr>
-                <td colSpan={2} className="text-right px-2 py-2 font-bold">
+                <td colSpan={2} className="text-right px-2 py-2 text-[#6e4231] font-bold">
                   Total
                 </td>
-                <td className="text-right px-2 py-2 font-bold">
+                <td className="text-right text-[#6e4231] px-2 py-2 font-bold">
                   ₦
                   {placeOrder.reduce(
                     (acc, item) => acc + item.price * item.quantity,
@@ -93,7 +93,7 @@ const OrderPage: React.FC = () => {
 
         {/* Delivery Details */}
         <section className="mb-8">
-          <h2 className="mb-4 text-lg font-semibold">Delivery Details</h2>
+          <h2 className="mb-4 text-lg font-semibold text-[#6e4231]">Delivery Details</h2>
           <form className="grid gap-4">
             <input
               type="text"
@@ -120,7 +120,7 @@ const OrderPage: React.FC = () => {
 
         {/* Payment Method */}
         <section className="mb-8">
-          <h2 className="mb-4 text-lg font-semibold">Payment Method</h2>
+          <h2 className="mb-4 text-lg font-semibold text-[#6e4231]">Payment Method</h2>
           <div className="flex gap-6">
             <label className="flex items-center gap-2">
               <input

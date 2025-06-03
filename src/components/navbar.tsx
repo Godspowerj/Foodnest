@@ -45,7 +45,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* Greeting Section */}
-      <div className={`${['/order', '/wallet'].includes(pathname) ? 'hidden' : 'block'} mb-1 lg:hidden md:mb-3`}>
+      <div className={`${['/order', '/wallet','/history'].includes(pathname) ? 'hidden' : 'block'} mb-1 lg:hidden md:mb-3`}>
         <span className="text-2xl md:text-2xl font-semibold py-1">
           Hello there!
         </span>
@@ -56,7 +56,7 @@ const Navbar = () => {
     
 
       {/* Main Navbar */}
-    <div className={`${['/order', '/wallet'].includes(pathname) ? 'hidden lg:hidden' : 'flex lg:flex lg:items-center w-full lg:justify-between'}`}>
+    <div className={`${['/order', '/wallet','/history'].includes(pathname) ? 'hidden lg:hidden' : 'flex lg:flex lg:items-center w-full lg:justify-between'}`}>
        <h2 className={" text-black/70 md:text-2xl lg:block font-medium hidden md:hidden"}>
        Choose category
        </h2>

@@ -5,7 +5,7 @@ import {
   OrderIcon,
   HistoryIcon,
   CancelIcon,
-  WalletIcon,
+  FavoriteIcon,
 } from "@/asset/asset";
 import Link from "next/link";
 import { useContext } from "react";
@@ -27,12 +27,12 @@ const Sidebar: React.FC = () => {
     {
       icon: <HistoryIcon />,
       name: "History",
-      path: "/*",
+      path: "/history",
     },
     {
-      icon: <WalletIcon />,
-      name: "Wallet",
-      path: "/wallet",
+      icon: <FavoriteIcon />,
+      name: "Favourite",
+      path: "/favourite",
     },
   ];
 
@@ -48,7 +48,7 @@ const Sidebar: React.FC = () => {
   return (
     <>
       <div
-        className={`bg-white fixed bottom-0 left-0 w-full h-16 flex justify-between items-center  py-2 shadow-lg z-50 lg:static lg:h-screen lg:w-20 lg:flex-col lg:justify-between lg:items-center lg:px-5 lg:py-6 transition-transform duration-500 ${
+        className={`bg-white fixed bottom-0 left-0 w-full h-16 flex justify-between items-center  py-2 shadow-lg z-50 lg:static lg:h-screen lg:w-20 lg:flex-col lg:justify-between lg:items-center lg:px-5 lg:py-4 transition-transform duration-500 ${
           isSidebarOpen ? "translate-y-0" : "translate-y-full lg:translate-y-0"
         }`}
       >
@@ -72,7 +72,7 @@ const Sidebar: React.FC = () => {
                   )}
                 </span>
 
-                <span className=" text-[12px] lg:text-[14px]">
+                <span className="text-[12px] lg:text-[14px]">
                   {item.name}
                 </span>
               </Link>
