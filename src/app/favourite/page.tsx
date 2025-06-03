@@ -42,8 +42,8 @@ const Favourites = () => {
                   className="w-16 h-16 object-cover rounded-lg"
                 />
                 <div className="flex-1">
-                  <h2 className="font-semibold text-[#6e4231]">{item.name}</h2>
-                  <p className="text-xs text-gray-600">{item.description}</p>
+                  <h2 className="text-lg font-semibold text-[#6e4231]">{item.name}</h2>
+                  <p className="text-sm text-gray-600 flex-wrap flex">{item.description.slice(0,50)}...</p>
                   <span className="text-[#6e4231] font-semibold mt-1 block">
                     ₦{item.price}
                   </span>
