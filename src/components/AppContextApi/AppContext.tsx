@@ -2,7 +2,7 @@
 import { Products, products } from "@/asset/Product";
 import React, { createContext, useState } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 type AppContextType = {
   cart: CartItem[];
@@ -38,7 +38,6 @@ type CartItem = {
   description?: string;
 };
 type PlaceOrder = CartItem[];
-
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -82,12 +81,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
       }
       // If not in cart, add with quantity 1
       return [
-
         ...prev,
         {
           ...item,
           image:
-          // Ensure image is a string, fallback to empty string if not
+            // Ensure image is a string, fallback to empty string if not
             typeof item.image === "string"
               ? item.image
               : (item.image as any).src ?? "",
@@ -98,27 +96,28 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const handleLoading = () => {
-  setLoading(true);
-  setTimeout(() => {
-    setLoading(false);
-    setPlaceOrder(cart);
-    toast.success('Order placed successfully! Check your order page');
-    setCart([]);
-  }, 2000);
-};
-
-const placeOrderData = () => {
-  handleLoading();
-};
-
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setPlaceOrder(cart);
+      toast.success("Order placed successfully! Check your order page");
+      setCart([]);
+    }, 2000);
+  };
+ 
+  // Function to place an order
+  const placeOrderData = () => {
+    handleLoading();
+  };
+  
   const removeFromOrder = (id: number) => {
-  setPlaceOrder(prev => prev.filter(item => item.id !== id));
-    toast.error('Item removed from order');
-    router.push('/order');
-};
+    setPlaceOrder((prev) => prev.filter((item) => item.id !== id));
+    toast.error("Item removed from order");
+    router.push("/order");
+  };
   const removeFromCart = (id: number) => {
     setCart((prev) => prev.filter((cartItem) => cartItem.id !== id));
-    toast.error('Item removed from cart')
+    toast.error("Item removed from cart");
   };
 
   // Function to update the quantity of items in the cart
