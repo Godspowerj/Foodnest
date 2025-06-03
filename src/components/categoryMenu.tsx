@@ -45,6 +45,10 @@ const CategoryMenu = () => {
               <p className="text-gray-500 text-sm mb-2">{item.description}</p>
               <button onClick={() => addToCart(item)} className="bg-primary text-white bg-[#6e4231] w-full px-4 py-3 shadow-sm drop-shadow rounded-full text-sm font-medium hover:bg-primary-dark transition">
                 {cart.some((cartItem) => cartItem.id === item.id) ? "Added" : "Add to Cart"}
+<<<<<<< HEAD
+=======
+          
+>>>>>>> 9f5923d2710c0f628432637f1a51aa2b35d84f6c
               </button>
             </div>
           </div>
