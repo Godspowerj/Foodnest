@@ -6,7 +6,7 @@ const History = () => {
     <main className="min-h-screen bg-gray-100 lg:p-6 p-4">
       <Navbar />
       <div className="max-w-4xl mx-auto  ">
-        <h1 className=" mb-4 text-xl font-semibold  text-[#6e4231]  border-b border-[#6e4231]/20 pb-3">
+        <h1 className="mb-4 text-xl font-semibold  text-[#6e4231]  border-b border-[#6e4231]/20 pb-3">
           Order History
         </h1>
 

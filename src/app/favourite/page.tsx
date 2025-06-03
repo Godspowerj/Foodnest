@@ -1,8 +1,10 @@
 import React from 'react';
+import Navbar from '@/components/navbar';
 
 const Favourites = () => {
   return (
-    <main className="min-h-screen bg-[#fdfaf7] p-6">
+    <main className="min-h-screen bg-[#fdfaf7] lg:p-6 p-4">
+      <Navbar />
       <div className="max-w-4xl mx-auto">
         <h1 className="text-xl font-semibold text-[#6e4231] mb-6 border-b border-[#6e4231]/20 pb-3">My Favourites</h1>
 
