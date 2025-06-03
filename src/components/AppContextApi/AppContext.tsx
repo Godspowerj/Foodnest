@@ -30,6 +30,7 @@ type AppContextType = {
   favorite: favorite[];
   setFavorite: React.Dispatch<React.SetStateAction<favorite[]>>;
   handleFavourite: (item: favorite) => void;
+  removeFromFavourite: (id: number) => void;
 };
 type CartItem = {
   id: number;
@@ -56,6 +57,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const [placeOrder, setPlaceOrder] = useState<PlaceOrder>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [favorite, setFavorite] = useState<favorite[]>([]);
+
   const router = useRouter();
 
   // Toggle functions for sidebar and cart
@@ -137,6 +139,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
+  const removeFromFavourite = (id: number) => {
+    setFavorite((prev) => prev.filter((favItem) => favItem.id !== id));
+    toast.error("Item removed from favourites");
+  }
+
   // Function to update the quantity of items in the cart
   const updateCartQuantity = (id: number, amount: number) => {
     setCart((prev) =>
@@ -175,6 +182,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     favorite,
     setFavorite,
     handleFavourite,
+    removeFromFavourite
   };
   return (
     <AppContext.Provider value={Contextvalue}>{children}</AppContext.Provider>

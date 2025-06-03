@@ -6,7 +6,7 @@ import { AppContext } from "@/components/AppContextApi/AppContext";
 import Image from "next/image";
 
 const Favourites = () => {
-  const { favorite } = useContext(AppContext)!;
+  const { favorite,removeFromFavourite } = useContext(AppContext)!;
   return (
     <main className="min-h-screen bg-[#fdfaf7] lg:p-6 p-4">
       <Navbar />
@@ -52,7 +52,7 @@ const Favourites = () => {
                   <button className="text-[#6e4231] text-xs border border-[#6e4231] rounded-md px-2 py-1 hover:bg-[#6e4231] hover:text-white transition">
                     Reorder
                   </button>
-                  <button className="text-[11px] text-red-500 hover:underline">
+                  <button onClick={()=>removeFromFavourite(item.id)} className="text-[11px] text-red-500 hover:underline">
                     Remove
                   </button>
                 </div>
