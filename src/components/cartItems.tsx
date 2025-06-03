@@ -70,8 +70,9 @@ const CartItems: React.FC = () => {
               <Image
                 src="/empty-cart.png"
                 alt="Empty Cart"
-                width={400}
-                height={400}
+                width={800}
+                height={800}
+                
               />
               <p className="text-gray-500 mt-4">Your cart is empty</p>
               <p className="text-gray-500">Add items to get started</p>
