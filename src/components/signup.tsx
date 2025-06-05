@@ -5,6 +5,8 @@ import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
 import Button from "./button";
 import { CancelIcon } from "@/asset/asset";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "@/lib/firebase";
 
 export default function SignUp() {
   const { setAuthModal } = useContext(AppContext)!;
@@ -17,11 +19,24 @@ export default function SignUp() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleGoogleSignup = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("✅ Signed up with Google:", user);
+
+      // Optional: close modal or save user info to context
+      setAuthModal(null);
+    } catch (error: any) {
+      console.error("❌ Google signup error:", error.message);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Sign Up:", formData);
   };
+  const { loading, setLoading } = useContext(AppContext)!;
 
   return (
     <div className="fixed inset-0 top-0 left-0 w-full h-full flex items-center justify-center bg-black/20  z-[1000]">
@@ -35,7 +50,7 @@ export default function SignUp() {
             <CancelIcon />
           </button>
         </div>
-        
+
         <div>
           <h2 className="text-2xl font-medium text-center">Sign Up</h2>
           <p className="text-center text-gray-600">Sign up to continue</p>
@@ -85,6 +100,13 @@ export default function SignUp() {
         </div>
         <button
           type="button"
+          onClick={handleGoogleSignup}
+          disabled={loading}
+          style={{
+            opacity: loading ? 0.6 : 1,
+            cursor: loading ? "not-allowed" : "pointer",
+            transition: "opacity 0.3s ease",
+          }}
           className="w-full flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 px-4 hover:bg-gray-50 transition"
         >
           <img src="/google-icon.png" alt="Google" className="w-5 h-5" />

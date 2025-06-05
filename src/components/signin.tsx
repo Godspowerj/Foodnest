@@ -8,6 +8,7 @@ import Button from "@/components/button";
 import { CancelIcon } from "@/asset/asset";
 import Image from "next/image";
 
+
 export default function SignIn() {
   const { setAuthModal } = useContext(AppContext)!;
   const [formData, setFormData] = useState({ text: "" });
