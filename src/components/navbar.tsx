@@ -44,23 +44,6 @@ const Navbar = () => {
           </span>
         </div>
       </div>
-      {/* Greeting Section */}
-      {/* <div className={`${['/order', '/favourite','/history'].includes(pathname) ? 'hidden' : 'block'} mb-1 lg:mb-3`}>
-        <span className="text-2xl md:text-2xl font-semibold py-1">
-          {currentUser?.name ? `Hello, ${currentUser.name}!` : "Hello there!"}
-        </span>
-        <p className="text-gray-500 text-sm md:text-lg mt-1">
-          {currentUser?.name ? "Find your favorite meals!" : "Find your favorite meals!"}
-        </p>
-      </div> */}
-      {/* <div className={`${['/order', '/favourite','/history'].includes(pathname) ? 'hidden' : 'block'} mb-1 lg:hidden md:mb-3`}>
-        <span className="text-2xl md:text-2xl font-semibold py-1">
-          Hello there!
-        </span>
-        <p className="text-gray-500 text-sm md:text-lg mt-1">
-          Find your favorite meals!
-        </p>
-      </div> */}
     
 
       {/* Main Navbar */}

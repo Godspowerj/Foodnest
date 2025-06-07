@@ -15,6 +15,7 @@ const CategoryMenu = () => {
     cart,
     handleFavourite,
     favorite,
+    currentUser,
   } = useContext(AppContext)!;
 
   return (
@@ -90,8 +91,15 @@ const CategoryMenu = () => {
                 </span>
               </div>
               <p className="text-gray-500 text-sm mb-2">{item.description}</p>
+
               <button
-                onClick={() => addToCart(item)}
+                onClick={() => {
+                  if (!currentUser) {
+                    toast.error("Please sign in to add items to cart");
+                    return;
+                  }
+                  addToCart(item);
+                }}
                 className="bg-primary text-white bg-[#6e4231] w-full px-4 py-3 shadow-sm drop-shadow rounded-full text-sm font-medium hover:bg-primary-dark transition"
               >
                 {cart.some((cartItem) => cartItem.id === item.id)
