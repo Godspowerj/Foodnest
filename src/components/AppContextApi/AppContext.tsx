@@ -1,8 +1,11 @@
 "use client";
 import { Products, products } from "@/asset/Product";
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { signOut } from "firebase/auth";
 
 type AppContextType = {
   cart: CartItem[];
@@ -31,6 +34,10 @@ type AppContextType = {
   setFavorite: React.Dispatch<React.SetStateAction<favorite[]>>;
   handleFavourite: (item: favorite) => void;
   removeFromFavourite: (id: number) => void;
+  currentUser: UserType;
+  setCurrentUser: React.Dispatch<React.SetStateAction<UserType>>;
+  emailSignup: (email: string, password: string) => Promise<void>;
+  emailSignin: (email: string, password: string) => Promise<void>;
 };
 type CartItem = {
   id: number;
@@ -43,6 +50,12 @@ type CartItem = {
 };
 type PlaceOrder = CartItem[];
 type favorite = Products;
+type UserType = {
+  name?: string | null;
+  email?: string | null;
+  photo?: string | null;
+  uid?: string;
+} | null;
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -57,6 +70,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const [placeOrder, setPlaceOrder] = useState<PlaceOrder>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [favorite, setFavorite] = useState<favorite[]>([]);
+  const [currentUser, setCurrentUser] = useState<UserType>(null);
 
   const router = useRouter();
 
@@ -77,7 +91,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
       : products.filter((item) => item.category === selectCategory).length;
 
   // Function to add items to the cart
-  const addToCart = (item:Products) => {
+  const addToCart = (item: Products) => {
     setCart((prev) => {
       const found = prev.find((cartItem) => cartItem.id === item.id);
       if (found) {
@@ -101,6 +115,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
       ];
     });
   };
+  
 
   const handleLoading = () => {
     setLoading(true);
@@ -142,7 +157,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const removeFromFavourite = (id: number) => {
     setFavorite((prev) => prev.filter((favItem) => favItem.id !== id));
     toast.error("Item removed from favourites");
-  }
+  };
 
   // Function to update the quantity of items in the cart
   const updateCartQuantity = (id: number, amount: number) => {
@@ -157,6 +172,44 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
         .filter((cartItem) => cartItem.quantity > 0)
     );
   };
+ 
+ 
+
+const emailSignup = async (email: string, password: string) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    setCurrentUser({
+      name: user.displayName,
+      email: user.email,
+      photo: user.photoURL,
+      uid: user.uid,
+    });
+    toast.success("✅ Signed up successfully!");
+  } catch (error: any) {
+    console.error("❌ Signup error:", error.message);
+    toast.error(error.message);
+  }
+};
+
+const emailSignin = async (email: string, password: string) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    setCurrentUser({
+      name: user.displayName,
+      email: user.email,
+      photo: user.photoURL,
+      uid: user.uid,
+    });
+    toast.success("✅ Logged in successfully!");
+  } catch (error: any) {
+    console.error("❌ Signin error:", error.message);
+    toast.error(error.message);
+  }
+};
+
+ 
 
   const Contextvalue = {
     isSidebarOpen,
@@ -182,7 +235,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     favorite,
     setFavorite,
     handleFavourite,
-    removeFromFavourite
+    removeFromFavourite,
+    currentUser,
+    setCurrentUser,
+    emailSignup,     
+    emailSignin
   };
   return (
     <AppContext.Provider value={Contextvalue}>{children}</AppContext.Provider>

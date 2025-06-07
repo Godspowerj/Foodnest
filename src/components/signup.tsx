@@ -1,49 +1,48 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import InputField from "@/components/input";
-import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
 import Button from "./button";
 import { CancelIcon } from "@/asset/asset";
-import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "@/lib/firebase";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
-  const { setAuthModal } = useContext(AppContext)!;
+  const { setAuthModal, emailSignup } = useContext(AppContext)!;
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    text: "",
+    password: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleGoogleSignup = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      console.log("✅ Signed up with Google:", user);
 
-      // Optional: close modal or save user info to context
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.email || !formData.password) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    try {
+      await emailSignup(formData.email, formData.password);
       setAuthModal(null);
+      toast.success("Signed up successfully");
     } catch (error: any) {
-      console.error("❌ Google signup error:", error.message);
+      console.error("Email Sign Up Error:", error.message || error);
+      toast.error("Sign up failed");
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Sign Up:", formData);
-  };
-  const { loading, setLoading } = useContext(AppContext)!;
-
   return (
-    <div className="fixed inset-0 top-0 left-0 w-full h-full flex items-center justify-center bg-black/20  z-[1000]">
+    <div className="fixed inset-0 top-0 left-0 w-full h-full flex items-center justify-center bg-black/20 z-[1000]">
       <div className="max-w-md w-full bg-white p-7 rounded-lg shadow-md">
         <div className="flex justify-end mb-1">
           <button
-            className="border-1 border-gray-100 cursor-pointer rounded-full p-2 text-black/60"
+            className="border border-gray-100 cursor-pointer rounded-full p-2 text-black/60"
             onClick={() => setAuthModal(null)}
             aria-label="Close"
           >
@@ -55,7 +54,8 @@ export default function SignUp() {
           <h2 className="text-2xl font-medium text-center">Sign Up</h2>
           <p className="text-center text-gray-600">Sign up to continue</p>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
+
+        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <InputField
             label="Full Name"
             name="name"
@@ -72,15 +72,15 @@ export default function SignUp() {
             placeholder="Enter your email"
           />
           <InputField
-            label="Phone Number"
-            name="phone"
-            type="text"
-            value={formData.text}
+            label="Password"
+            name="password"
+            type="password"
+            value={formData.password}
             onChange={handleChange}
-            placeholder="eg. 07083009249"
+            placeholder="Enter your password"
           />
 
-          <Button type="submit">sign up</Button>
+          <Button type="submit">Sign Up</Button>
         </form>
 
         <p className="text-sm text-center text-gray-600 mt-4">
@@ -93,25 +93,23 @@ export default function SignUp() {
             Privacy Policy
           </span>
         </p>
+
         <div className="flex items-center my-4">
           <div className="flex-grow h-px bg-gray-300" />
           <span className="mx-2 text-gray-500 text-sm">or</span>
           <div className="flex-grow h-px bg-gray-300" />
         </div>
+
         <button
           type="button"
-          onClick={handleGoogleSignup}
-          disabled={loading}
-          style={{
-            opacity: loading ? 0.6 : 1,
-            cursor: loading ? "not-allowed" : "pointer",
-            transition: "opacity 0.3s ease",
-          }}
-          className="w-full flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 px-4 hover:bg-gray-50 transition"
+          // Disable Google SignUp for now
+          disabled
+          className="w-full flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 px-4 bg-gray-100 cursor-not-allowed text-gray-500"
         >
           <img src="/google-icon.png" alt="Google" className="w-5 h-5" />
-          <span>Sign up with Google</span>
+          <span>Sign up with Google (disabled)</span>
         </button>
+
         <p className="text-base text-center text-gray-600 mt-4">
           Already have an account?{" "}
           <button

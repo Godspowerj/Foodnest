@@ -36,7 +36,7 @@ const Sidebar: React.FC = () => {
     },
   ];
 
-  const { isSidebarOpen, setAuthModal, toggleSidebar, placeOrder,favorite } =
+  const { isSidebarOpen, setAuthModal, toggleSidebar, placeOrder,favorite,currentUser } =
     useContext(AppContext)!;
   const pathname = usePathname();
   const isActive = (href: string) => {
@@ -90,12 +90,15 @@ const Sidebar: React.FC = () => {
               className="flex-1 flex flex-col items-center lg:hidden"
             >
               <Image
-                src="/profile.png"
+                src={currentUser?.photo || "/profile.png"}
                 alt="Profile"
                 width={40}
                 height={40}
                 className="w-7 h-7 rounded-full object-cover"
               />
+              <span className="text-[12px] text-gray-500 lg:mt-2 lg:text-[14px]">
+                {currentUser?.name || "Profile"}
+              </span>
               <span className="text-[12px] text-gray-500 lg:mt-2 lg:text-[14px]">
                 Profile
               </span>
