@@ -3,7 +3,7 @@ import { Products, products } from "@/asset/Product";
 import React, { createContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
 
@@ -36,7 +36,7 @@ type AppContextType = {
   removeFromFavourite: (id: number) => void;
   currentUser: UserType;
   setCurrentUser: React.Dispatch<React.SetStateAction<UserType>>;
-  emailSignup: (email: string, password: string) => Promise<void>;
+  emailSignup: (email: string, password: string, name:string) => Promise<void>;
   emailSignin: (email: string, password: string) => Promise<void>;
 };
 type CartItem = {
@@ -175,10 +175,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
  
  
 
-const emailSignup = async (email: string, password: string) => {
+const emailSignup = async (email: string, password: string, name:string) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
+    console.log("User signed up:", user);
+
+    await updateProfile(user, {
+      displayName: name,
+    });
     setCurrentUser({
       name: user.displayName,
       email: user.email,
@@ -239,7 +244,8 @@ const emailSignin = async (email: string, password: string) => {
     currentUser,
     setCurrentUser,
     emailSignup,     
-    emailSignin
+    emailSignin,
+
   };
   return (
     <AppContext.Provider value={Contextvalue}>{children}</AppContext.Provider>

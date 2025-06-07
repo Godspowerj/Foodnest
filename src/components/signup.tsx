@@ -28,7 +28,7 @@ export default function SignUp() {
     }
 
     try {
-      await emailSignup(formData.email, formData.password);
+      await emailSignup(formData.email, formData.password, formData.name);
       setAuthModal(null);
     } catch (error: any) {
       console.error("Email Sign Up Error:", error.message || error);

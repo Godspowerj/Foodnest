@@ -4,8 +4,7 @@ import InputField from "@/components/input";
 import { AppContext } from "./AppContextApi/AppContext";
 import Button from "@/components/button";
 import { CancelIcon } from "@/asset/asset";
-import toast from "react-toastify"; // ensure you're using toast
-import Image from "next/image";
+import { toast } from "react-toastify";
 
 export default function SignIn() {
   const { setAuthModal, emailSignin } = useContext(AppContext)!;
@@ -29,12 +28,12 @@ export default function SignIn() {
     await emailSignin(formData.email, formData.password);
     setAuthModal(null);
     try {
-          await emailSignin(formData.email, formData.password);
-          setAuthModal(null);
-        } catch (error: any) {
-          console.error("Email Sign Up Error:", error.message || error);
-
-        }
+      await emailSignin(formData.email, formData.password);
+      setAuthModal(null);
+    } catch (error: any) {
+      console.error("Email Sign Up Error:", error.message || error);
+      
+    }
   };
 
   return (

@@ -7,7 +7,7 @@ import { AppContext } from "./AppContextApi/AppContext";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-  const { toggleSidebar, isSidebarOpen, toggleCart, cart } =
+  const { toggleSidebar, isSidebarOpen, toggleCart, cart,currentUser } =
     useContext(AppContext)!;
   const pathname = usePathname();
 
@@ -45,21 +45,34 @@ const Navbar = () => {
         </div>
       </div>
       {/* Greeting Section */}
-      <div className={`${['/order', '/favourite','/history'].includes(pathname) ? 'hidden' : 'block'} mb-1 lg:hidden md:mb-3`}>
+      {/* <div className={`${['/order', '/favourite','/history'].includes(pathname) ? 'hidden' : 'block'} mb-1 lg:mb-3`}>
+        <span className="text-2xl md:text-2xl font-semibold py-1">
+          {currentUser?.name ? `Hello, ${currentUser.name}!` : "Hello there!"}
+        </span>
+        <p className="text-gray-500 text-sm md:text-lg mt-1">
+          {currentUser?.name ? "Find your favorite meals!" : "Find your favorite meals!"}
+        </p>
+      </div> */}
+      {/* <div className={`${['/order', '/favourite','/history'].includes(pathname) ? 'hidden' : 'block'} mb-1 lg:hidden md:mb-3`}>
         <span className="text-2xl md:text-2xl font-semibold py-1">
           Hello there!
         </span>
         <p className="text-gray-500 text-sm md:text-lg mt-1">
           Find your favorite meals!
         </p>
-      </div>
+      </div> */}
     
 
       {/* Main Navbar */}
-    <div className={`${['/order', '/favourite','/history'].includes(pathname) ? 'hidden lg:hidden' : 'flex lg:flex lg:items-center w-full lg:justify-between'}`}>
-       <h2 className={" text-black/70 md:text-2xl lg:block font-medium hidden md:hidden"}>
-       Choose category
-       </h2>
+    <div className={`${['/order', '/favourite','/history'].includes(pathname) ? 'hidden lg:hidden' : 'block lg:flex lg:items-center w-full lg:justify-between'}`}>
+     <div className={`${['/order', '/favourite','/history'].includes(pathname) ? 'hidden' : 'block'} `}>
+        <span className="text-2xl md:text-2xl font-semibold py-1">
+          {currentUser?.name ? `Hello, ${currentUser.name}!` : "Hello there!"}
+        </span>
+        <p className="text-gray-500 text-sm md:text-lg mt-1">
+          {currentUser?.name ? "Explore your favourite!" : "Find your favorite meals!"}
+        </p>
+      </div>
         <div className="w-full max-w-md">
           <Input
             name="search"
