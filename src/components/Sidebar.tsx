@@ -11,6 +11,8 @@ import Link from "next/link";
 import { useContext } from "react";
 import { AppContext } from "./AppContextApi/AppContext";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+import {toast} from "react-toastify"
 
 const Sidebar: React.FC = () => {
   const sidebarItems = [
@@ -35,14 +37,29 @@ const Sidebar: React.FC = () => {
       path: "/favourite",
     },
   ];
-
-  const { isSidebarOpen, setAuthModal, toggleSidebar, placeOrder,favorite,currentUser } =
-    useContext(AppContext)!;
+  const router = useRouter();
+  const {
+    isSidebarOpen,
+    setAuthModal,
+    toggleSidebar,
+    placeOrder,
+    favorite,
+    currentUser,
+  } = useContext(AppContext)!;
   const pathname = usePathname();
   const isActive = (href: string) => {
     return pathname === href
       ? " transition-all duration-200 transform scale-105 text-white bg-[#6e4231] rounded-lg lg:px-2 px-0 lg:py-2 py-1"
       : " text-gray-500 hover:text-[#6e4231] transition-colors duration-200 flex items-center justify-center";
+  };
+   const handleProfileClick= () => {
+    if (currentUser?.uid) {
+      router.push('/profile');
+      console.log("Profile clicked");
+    } else {
+      toast.error("Please sign in to view your profile");
+      setAuthModal("signin"); // Open the sign-in modal
+    }
   };
 
   return (
@@ -66,7 +83,7 @@ const Sidebar: React.FC = () => {
                 <span className="relative">
                   {item.icon}
                   {item.name === "Orders" && placeOrder.length > 0 && (
-                    <span  className="absolute -top-2 -right-2 z-10  shadow-sm bg-[#6e4231] text-white text-xs rounded-full w-4 h-4 text-center">
+                    <span className="absolute -top-2 -right-2 z-10  shadow-sm bg-[#6e4231] text-white text-xs rounded-full w-4 h-4 text-center">
                       {placeOrder.length}
                     </span>
                   )}
@@ -75,18 +92,15 @@ const Sidebar: React.FC = () => {
                       {favorite.length}
                     </span>
                   )}
-
                 </span>
 
-                <span className="text-[12px] lg:text-[14px]">
-                  {item.name}
-                </span>
+                <span className="text-[12px] lg:text-[14px]">{item.name}</span>
               </Link>
             ))}
 
             {/* Profile/logout as a nav item on mobile only */}
             <button
-              onClick={() => setAuthModal("signin")}
+              onClick={handleProfileClick}
               className="flex-1 flex flex-col items-center lg:hidden"
             >
               <Image
@@ -104,7 +118,7 @@ const Sidebar: React.FC = () => {
         </div>
 
         {/* Profile/logout at the bottom on desktop only */}
-        <button onClick={() => setAuthModal("signin")}>
+        <button onClick={handleProfileClick}>
           <div className="hidden lg:flex flex-col items-center justify-center ">
             <Image
               src="/profile.png"
@@ -113,7 +127,6 @@ const Sidebar: React.FC = () => {
               height={40}
               className="w-10 h-10 rounded-full object-cover"
             />
-            
           </div>
         </button>
       </div>
