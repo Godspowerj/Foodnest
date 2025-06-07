@@ -30,7 +30,6 @@ export default function SignUp() {
     try {
       await emailSignup(formData.email, formData.password);
       setAuthModal(null);
-      toast.success("Signed up successfully");
     } catch (error: any) {
       console.error("Email Sign Up Error:", error.message || error);
       toast.error("Sign up failed");
@@ -100,16 +99,7 @@ export default function SignUp() {
           <div className="flex-grow h-px bg-gray-300" />
         </div>
 
-        <button
-          type="button"
-          // Disable Google SignUp for now
-          disabled
-          className="w-full flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 px-4 bg-gray-100 cursor-not-allowed text-gray-500"
-        >
-          <img src="/google-icon.png" alt="Google" className="w-5 h-5" />
-          <span>Sign up with Google (disabled)</span>
-        </button>
-
+       
         <p className="text-base text-center text-gray-600 mt-4">
           Already have an account?{" "}
           <button
