@@ -47,8 +47,8 @@ const Navbar = () => {
     
 
       {/* Main Navbar */}
-    <div className={`${['/order', '/favourite','/history'].includes(pathname) ? 'hidden lg:hidden' : 'block lg:flex lg:items-center w-full lg:justify-between'}`}>
-     <div className={`${['/order', '/favourite','/history'].includes(pathname) ? 'hidden' : 'block'} `}>
+    <div className={`${['/order', '/favourite','/history','/profile'].includes(pathname) ? 'hidden lg:hidden' : 'block lg:flex lg:items-center w-full lg:justify-between'}`}>
+     <div className={`${['/order', '/favourite','/history','/profile'].includes(pathname) ? 'hidden' : 'block'} `}>
         <span className="text-2xl md:text-2xl font-semibold py-1">
           {currentUser?.name ? `Hello, ${currentUser.name}!` : "Hello there!"}
         </span>
