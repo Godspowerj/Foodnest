@@ -5,19 +5,14 @@ import SignIn from "@/components/signin";
 import SignUp from "@/components/signup";
 
 const ModalManager = () => {
-  const { authModal, currentUser } = useContext(AppContext)!;
+  const { authModal,currentUser } = useContext(AppContext)!;
+  return (
+    <>
+      {authModal === "signin" && !currentUser?.uid && <SignIn />}
+      {authModal === "signup" && !currentUser?.uid && <SignUp />}
 
-  let authComponent = null;
-
-  if (!currentUser?.uid) {
-    if (authModal === "signin") {
-      authComponent = <SignIn />;
-    } else if (authModal === "signup") {
-      authComponent = <SignUp />;
-    }
-  }
-
-  return <>{authComponent}</>;
+    </>
+  );
 };
 
 export default ModalManager;
